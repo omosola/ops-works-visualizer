@@ -1,0 +1,44 @@
+// Place all the styles related to the visualizations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+
+#dashboard {
+	background: url("white_wall_hash_bg_2x.png");
+	height: 100%;
+	width: 100%;
+
+	.visualization-canvas {
+		width: 82%;
+		height: 100%;
+		float: left;
+	}
+
+	.sidebar {
+		background: rgba(0,0,0,0.12);
+		height: 100%;
+		width: 18%;
+		min-width: 100px;
+		float: right;
+
+		.info_box {
+			  height: 50%;
+			  width: 100%;
+			  background: rgba(150,150,150,0.2);
+		}
+	}
+}
+
+.dummy-visualization {
+	background: rgba(150,150,150, 0.3);
+	height: 50px;
+	width: 50px;
+	border-radius: 25px;
+	margin-left: 50%;
+	margin-top: 25%;
+}

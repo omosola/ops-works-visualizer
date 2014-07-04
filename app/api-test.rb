@@ -25,27 +25,27 @@ end
 
 # @ret array of all stacks (each is a hash)
 def load_stacks
-  puts "loading stacks"
+  # puts "loading stacks"
   ops_works_client.describe_stacks.data[:stacks]
 end
 
 def load_instances(stack_id)
-  puts "loading instances"
+  # puts "loading instances"
   ops_works_client.describe_instances(stack_id: stack_id).data[:instances]
 end
 
 def load_layers(stack_id)
-  puts "loading layers"
+  # puts "loading layers"
   ops_works_client.describe_layers(stack_id: stack_id).data[:layers]
 end
 
 def load_elbs(stack_id)
-  puts "loading elastic load balancers"
+  # puts "loading elastic load balancers"
   ops_works_client.describe_elastic_load_balancers(stack_id: stack_id).data[:elastic_load_balancers]
 end
 
 def add_instance_info_to_stacks(stacks_array)
-  puts "adding instance info to stacks"
+  # puts "adding instance info to stacks"
   stacks_array.each do |stack|
     instances = load_instances stack[:stack_id]
     stack.update(:instances => instances)
@@ -54,7 +54,7 @@ def add_instance_info_to_stacks(stacks_array)
 end
 
 def add_layer_info_to_stacks(stacks_array)
-  puts "adding layer info to stacks"
+  # puts "adding layer info to stacks"
   stacks_array.each do |stack|
     layers = load_layers stack[:stack_id]
     stack.update(:layers => layers)
@@ -62,7 +62,7 @@ def add_layer_info_to_stacks(stacks_array)
 end
 
 def add_elb_info_to_stacks(stacks_array)
-  puts "adding elastic load balancer info to stacks"
+  # puts "adding elastic load balancer info to stacks"
   stacks_array.each do |stack|
     elastic_load_balancers = load_elbs stack[:stack_id]
     stack.update(:elbs => elastic_load_balancers)
@@ -73,6 +73,13 @@ def print_stacks_info(stacks_array)
   stacks_array.each_with_index do |stack, index|
     puts "Stack ##{index}"
     puts "\tName #{stack[:name]}"
+    puts "\tELBs"
+    stack[:elbs].each_with_index do |elb, index|
+      puts "\t\t#{index}"
+      puts "\t\tName: #{elb[:elastic_load_balancers]}"
+      puts "\t\tRegion: #{elb[:region]}"
+      puts "\t\tDNS Name: #{elb[:dns_name]}"
+    end
     puts "\tInstances"
     stack[:instances].each_with_index do |instance, index|
       puts "\t\t#{index}"
@@ -88,21 +95,15 @@ def print_stacks_info(stacks_array)
       puts "\t\tDomains: #{layer[:domains]}"
       puts "\t\tCreated At: #{layer[:created_at]}"
     end
-    puts "\tELBs"
-    stack[:elbs].each_with_index do |elb, index|
-      puts "\t\t#{index}"
-      puts "\t\tName: #{elb[:elastic_load_balancers]}"
-      puts "\t\tRegion: #{elb[:region]}"
-      puts "\t\tDNS Name: #{elb[:dns_name]}"
-
-    end
   end
 end
 
-stacks = load_stacks
+def get_all_stack_info
+  stacks = load_stacks
+  stacks = add_instance_info_to_stacks stacks
+  stacks = add_layer_info_to_stacks stacks
+  stacks = add_elb_info_to_stacks stacks
+  stacks
+end
 
-stacks = add_instance_info_to_stacks stacks
-stacks = add_layer_info_to_stacks stacks
-stacks = add_elb_info_to_stacks stacks
-
-print_stacks_info stacks
+print_stacks_info get_all_stack_info
