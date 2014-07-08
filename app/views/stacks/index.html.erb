@@ -6,3 +6,8 @@
 <div class="sidebar">
 	<div class="info-box"></div>
 </div>
+
+<%= javascript_include_tag "treeD3" %>
+<%= javascript_tag do %>
+	window.treeData = '<%= raw @stacks %>'
+<% end%>

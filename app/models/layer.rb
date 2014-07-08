@@ -1,13 +1,13 @@
 require './lib/ops_works_wrapper'
 
 class Layer
-      attr_reader :layer_id, :type, :name
+	attr_reader :id, :type, :name
 
-      def initialize(layer_id, opts = {})
-      	return if !layer_id
-	
-	@layer_id = layer_id
-	@type = opts[:type]
-	@name = opts[:name]
-      end
+	def initialize(id, opts = {})
+		return if !id
+
+		@id = id
+		@type = opts[:type]
+		@name = opts[:name]
+	end
 end

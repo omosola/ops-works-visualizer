@@ -16,16 +16,16 @@ class Stack
 
 				# returns all of the stacks converted from hashes into Stack objects
 				stacks.map! do |stack|
-					id = stack[:stack_id]
+					id = stack[:id]
 					opts = { 
 						name: stack[:name],
-						hostname: stack[:hostname_theme], # TODO: Do I really want hostname_theme??
-						default_os: stack[:default_os], 
-						default_az: stack[:default_availability_zone]
-					}
-					# create a new Stack object for each stack in the AWS_OW JSON response
-					Stack::new(id, opts)
-				end
+					hostname: stack[:hostname_theme], # TODO: Do I really want hostname_theme??
+					default_os: stack[:default_os], 
+					default_az: stack[:default_availability_zone]
+				}
+				# create a new Stack object for each stack in the AWS_OW JSON response
+				Stack::new(id, opts)
+			end
 
 			stacks.each do |stack|
 				stack.load_layers
@@ -65,7 +65,7 @@ class Stack
 	# to say "load_layers" and then say reload = false, since load_layers already
 	# sounds like I'm reloading layers
 	def load_layers
-		@layers = OpsWorksWrapper::client.describe_layers(stack_id: @id).data[:layers]
+		@layers = OpsWorksWrapper::client.describe_layers(id: @id).data[:layers]
 
 		# returns an array of Layer objects instead of the hashes returned from the API call
 		@layers.map! do |layer|
@@ -79,7 +79,7 @@ class Stack
 	end
 
 	def load_instances
-		@instances = OpsWorksWrapper::client.describe_instances(stack_id: @id).data[:instances]
+		@instances = OpsWorksWrapper::client.describe_instances(id: @id).data[:instances]
 
 		# returns an array of Instance objects instead of the hashes returned from the API call
 		@instances.map! do |instance|
@@ -98,7 +98,7 @@ class Stack
 	end 
 
 	def load_elastic_load_balancers(reload = false)
-		@elbs = OpsWorksWrapper::client.describe_elastic_load_balancers(stack_id: @id).data[:elastic_load_balancers]
+		@elbs = OpsWorksWrapper::client.describe_elastic_load_balancers(id: @id).data[:elastic_load_balancers]
 
 		# returns an array of ElasticLoadBalancer objects instead of the hashes returned from the API call
 		@elbs.map! do |elb|
