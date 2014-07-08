@@ -1,5 +1,27 @@
+<style>
+
+ .node circle {
+   fill: #fff;
+   stroke: steelblue;
+   stroke-width: 3px;
+ }
+
+ .node text { font: 12px sans-serif; }
+
+ .link {
+   fill: none;
+   stroke: #ccc;
+   stroke-width: 2px;
+ }
+ 
+    </style>
+
 <div class="visualization-canvas">
 </div>
 <div class="sidebar">
 	<div class="info-box"></div>
 </div>
+
+<%= javascript_tag do %>
+	window.treeData = <%= raw @stacks.to_json %>
+<% end%>

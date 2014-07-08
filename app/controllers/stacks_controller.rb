@@ -2,7 +2,7 @@ class StacksController < ApplicationController
 
 	def index
 		@stacks = Stack.all(params[:reload])
-		puts @stacks.to_json
+		render :json => @stacks
 	end
 
 	def show
