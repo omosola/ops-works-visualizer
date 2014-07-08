@@ -52,6 +52,12 @@ OpsWorksVisualization::Application.routes.draw do
 
   # See how all your routes lay out with "rake routes"
 
+  resources :stacks do
+    resources :elastic_load_balancers
+    resources :instances
+    resources :layers
+  end
+
   get 'visualizations/all' => 'visualizations#all'
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

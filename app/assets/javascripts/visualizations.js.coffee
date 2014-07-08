@@ -4,7 +4,15 @@
 
 
 $ ->
-  $('.dummy-visualization').hover(hoverFn)
+  $('.dummy-visualization').mouseover(mouseoverFn)
+  $('.dummy-visualization').mouseout(mouseoutFn)
 
-hoverFn = ->  
+mouseoverFn = ->  
+	# at this point, it's just show/hide, so I might as well use those functions instead
 	
+	$('.sidebar .info-box').css('background-color', 'rgba(231, 76, 60, 1)');
+	console.log('mouseover');
+
+mouseoutFn = ->
+	$('.sidebar .info-box').css('background-color', 'rgba(231, 76, 60, 0)');
+	console.log('mouseout');

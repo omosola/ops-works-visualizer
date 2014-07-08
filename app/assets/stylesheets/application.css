@@ -11,3 +11,15 @@
  *= require_self
  *= require_tree .
  */
+
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+
+body {
+	background: url("white_wall_hash_bg_2x.png");
+	height: 100%;
+	width: 100%;
+}
