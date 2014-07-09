@@ -10,7 +10,7 @@ class Stack
 		def self.all(reload = false)
 			if reload then Rails.cache.delete("all_stacks") end
 
-			Rails.cache.fetch("all_stacks", expires_in: 5.minutes) do
+			Rails.cache.fetch("all_stacks", expires_in: 15.minutes) do
 				# returns an array of all Stack objects
 				stacks = OpsWorksWrapper::client.describe_stacks.data[:stacks]
 

@@ -1,27 +1,49 @@
 <style>
+/*	body{
+		background: #eeeeee;    
+	}
 
- .node circle {
-   fill: #fff;
-   stroke: steelblue;
-   stroke-width: 3px;
- }
+	#holder{
+		overflow:hidden;
+		width: 100%;
+	}
+	.concentric{
+		float: left;
+		border: 1px solid black;
+	}
 
- .node text { font: 12px sans-serif; }
+	.concentricchart path {
+		stroke: #cccccc;
+		stroke-width: 1px;
+		opacity: 0.8;
+	}
 
- .link {
-   fill: none;
-   stroke: #ccc;
-   stroke-width: 2px;
- }
- 
-    </style>
+	.concentricchart text{
+		font-size: 12px;    
+	}
+
+	.legend_group circle{
+		stroke: #cccccc;
+		stroke-width: 1px;
+		opacity: 0.8;
+	}*/
+</style>
+
 
 <div class="visualization-canvas">
+<!--	<div id="holder">
+		<div class="concentric" data-role="concentric" data-width=320 data-height=320 data-thickness=15></div>
+		<div class="concentric" data-role="concentric" data-width=320 data-height=320 data-thickness=15></div>
+		<div class="concentric" data-role="concentric" data-width=320 data-height=320 data-thickness=15></div>
+		<div class="concentric" data-role="concentric" data-width=320 data-height=320 data-thickness=15></div>
+	</div>
+
+	<ul class="testers">
+		<li><a href="#">toggle</a></li>
+	</ul> -->
 </div>
 <div class="sidebar">
 	<div class="info-box"></div>
 </div>
 
-<%= javascript_tag do %>
-	window.treeData = <%= raw @stacks.to_json %>
-<% end%>
+
