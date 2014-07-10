@@ -3,7 +3,7 @@
 
 <!--<div class="col-md-5 col-md-offset-1 stack-container ">-->
 <div class="stack-container">
-	<h4 class="title"><%= stack.name %></h4>
+	<h4 class="stack-title"><%= stack.name %></h4>
 
 	<!-- Cycle through all ELBs -->
 	<% stack.elbs.each do |elb| %>
@@ -20,21 +20,23 @@
 	<!-- Cycle through all Layers -->
 	<% stack.layers.each do |layer| %>
 		<div class="row bar">
-			<div class="title"><%= layer.name %></div>
-
+			<div class="title"></div>
 			<!-- Split the layer bar into separate instances -->
 			<% count_instances = layer.instances.count %>
-			<!-- TODO: Fix so I don't have this empty div used for styling -->
-			<div class="col-md-1"></div>
-			<% layer.instances.each do |instance| %>
-				<!-- TODO: Shouldn't need to be a space in manually to add spacing -->
-				<div class="col-md-<%= 10/count_instances %> instance layer <%= instance.status %>">
-					&nbsp;
-					<div class="info">
-						<%= instance.to_json %>
-					</div>
-				</div>
-			<% end %>
+				<div class="col-md-offset-1">
+
+					<!-- TODO: Fix so I don't have this empty div used for styling -->
+					<% layer.instances.each do |instance| %>
+						<!-- TODO: Shouldn't need to be a space in manually to add spacing -->
+						<div class="col-md-<%= 10/count_instances %> instance layer <%= instance.status %>" style="width: <%= 90/count_instances %>%">
+							&nbsp;
+							<div class="info">
+								<%= instance.to_json %>
+							</div>
+						</div>
+					<% end %>
+
+			</div>
 		</div>
 	<% end %>
 </div>

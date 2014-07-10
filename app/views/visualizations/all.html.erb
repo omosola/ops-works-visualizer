@@ -26,15 +26,14 @@
 		<!--<p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>-->
 		<% @stacks.each_with_index do |stack, i| %>
 				<!-- Prints out a row every two stacks TODO: Should be solved differently! -->
-				<% if i % 2 == 0 %> <div class="row"> <% end %>
 					<%= render partial: "stack", locals: { stack: stack } %>
-				<% if i % 2 == 1 %> </div> <% end %>
+				
 		<% end %>
 	</div>
 
 </div><!-- /.container -->
 
-<div class="footer">
+<div id="info-hover-box">
 
 </div>
 
@@ -46,8 +45,17 @@
 
 		// NEXT STEP: Only have this happen for the specific element which was selected. not all of them
 		var content = $(this).find('.info').html();
-		$('.footer').html();
+		// hide, change content, show
+		$('#info-hover-box').hide();
+		$('#info-hover-box').css({
+			top: e.pageY,
+			left: e.pageX
+		});
+		$('#info-hover-box').html(content);
+		$('#info-hover-box').show();
+
 	});
+
 </script>
 
     <!-- Bootstrap core JavaScript
