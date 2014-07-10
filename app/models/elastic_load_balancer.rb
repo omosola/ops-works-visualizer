@@ -1,12 +1,12 @@
 require './lib/ops_works_wrapper'
 
 class ElasticLoadBalancer
-    attr_reader :id, :region, :availability_zones
+    attr_reader :name, :region, :availability_zones
 
-    def initialize(id, opts)
-    	return if !id
+    def initialize(name, opts)
+    	return if !name
 
-		@id = id
+		@name = name
 		@region = opts[:region]
 		@availability_zones = opts[:availability_zones]
     end

@@ -1,7 +1,7 @@
 require './lib/ops_works_wrapper'
 
 class Layer
-	attr_reader :id, :type, :name
+	attr_accessor :id, :type, :name, :instances
 
 	def initialize(id, opts = {})
 		return if !id

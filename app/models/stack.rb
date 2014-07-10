@@ -5,12 +5,12 @@ class Stack
 		# mainly only doing this because I want the aws opsworks initializations to not be tied to 
 		# the Stack model (especially since it needs to be callable by both Stack class methods and instance methods)
 
-		attr_reader :id, :name, :hostname, :default_os, :default_az
+		attr_reader :id, :name, :hostname, :default_os, :default_az, :elbs, :instances, :layers
 
 		def self.all(reload = false)
 			if reload then Rails.cache.delete("all_stacks") end
 
-			Rails.cache.fetch("all_stacks", expires_in: 15.minutes) do
+			Rails.cache.fetch("all_stacks", expires_in: 5.minutes) do
 				# returns an array of all Stack objects
 				stacks = OpsWorksWrapper::client.describe_stacks.data[:stacks]
 
@@ -28,8 +28,9 @@ class Stack
 				end
 
 			stacks.each do |stack|
-				stack.load_layers
 				stack.load_instances
+				stack.load_layers
+				stack.add_instances_to_layers
 				stack.load_elastic_load_balancers
 			end
 		end
@@ -83,31 +84,50 @@ class Stack
 
 		# returns an array of Instance objects instead of the hashes returned from the API call
 		@instances.map! do |instance|
-			instance_id = instance[:layer_id]
+			instance_id = instance[:instance_id]
 			opts = {
-				name: instance[:name],
 				hostname: instance[:hostname],
 				status: instance[:status],
-				size: instance[:size],
-				type: instance[:type],
+				os: instance[:os],
+				virtualization_type: instance[:virtualization_type],
 				availability_zone: instance[:availability_zone],
-				public_ip: instance[:public_ip]
+				public_ip: instance[:public_ip],
+				layer_ids: instance[:layer_ids]
 			}
 			Instance.new(instance_id, opts)
 		end
 	end 
+
+	# TODO: CLEAN THIS UP!! USE RUBY BUILT-INS
+	def add_instances_to_layers
+		instances_per_layer = {}
+		@instances.each do |instance|
+			instance.layer_ids.each do |layer_id|
+				if instances_per_layer.has_key? layer_id
+					instances_per_layer[layer_id] << instance
+				else
+					instances_per_layer[layer_id] = [instance]
+				end
+			end
+		end		
+		
+		@layers.each do |layer|
+			layer.instances = instances_per_layer[layer.id]
+			puts instances_per_layer[layer.id]
+		end
+	end
 
 	def load_elastic_load_balancers(reload = false)
 		@elbs = OpsWorksWrapper::client.describe_elastic_load_balancers(stack_id: @id).data[:elastic_load_balancers]
 
 		# returns an array of ElasticLoadBalancer objects instead of the hashes returned from the API call
 		@elbs.map! do |elb|
-			elb_id = elb[:layer_id]
+			elb_name = elb[:elastic_load_balancer_name]
 			opts = {
 				region: elb[:region],
 				availability_zone: elb[:availability_zone]
 			}
-			ElasticLoadBalancer.new(elb_id, opts)
+			ElasticLoadBalancer.new(elb_name, opts)
 		end
 	end
 end

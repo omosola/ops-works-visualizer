@@ -1,3 +1,64 @@
 // Place all the styles related to the visualizations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.visualization-canvas {
+	width: 100%;
+	height: 100%;
+}
+
+.stack-container {
+	background: rgba(189, 195, 199,1.0);
+	min-height: 200px !important;
+	height: 50%;
+	border-radius: 5px;
+	border: 2px solid rgba(0,0,0,0.2);
+
+	/* Overriding bootstrap defaults */
+	margin-top: 10px;
+}
+
+.bar {
+	margin-bottom: 5px;
+
+	.title {
+		position: absolute;
+		width: 100%;
+		color: rgba(0,0,0,0.5);
+	}
+}
+
+.instance {
+
+	border-right: 4px solid rgba(0,0,0, 0.1);
+
+	&.elb {
+		background: rgb(52, 152, 219);
+		opacity: 1.0;
+	}
+
+	&.layer {
+		/* TODO: Figure out how to display Layer name while still being able to mouse over individual instances - register the mouseover event on the element underneath */
+		background: rgba(149, 165, 166, 1.0); /* light gray - 'concrete' */
+	}
+
+	&.stopped {
+		background: rgb(231, 76, 60);
+		opacity: 0.7;
+	}
+
+	&.online {
+		background: rgb(46, 204, 113);
+		opacity: 0.7;
+	}
+
+	.info {
+		display: none;
+	}
+	
+}
+
+.instance:hover {
+	cursor: pointer;
+	opacity: 1.0;
+}

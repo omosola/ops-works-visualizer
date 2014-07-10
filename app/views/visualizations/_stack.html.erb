@@ -1,0 +1,40 @@
+<!-- TODO: Refactor JS code out of the HTML file! -->
+<!--  TODO: Remove &nbsp; -->
+
+<!--<div class="col-md-5 col-md-offset-1 stack-container ">-->
+<div class="stack-container">
+	<h4 class="title"><%= stack.name %></h4>
+
+	<!-- Cycle through all ELBs -->
+	<% stack.elbs.each do |elb| %>
+		<div class="row bar">
+			<div class="col-md-10 col-md-offset-1 instance elb">
+				Elastic Load Balancer
+				<div class="info">
+					<%= elb.to_json %>
+				</div>
+			</div>
+		</div>
+	<% end %>
+
+	<!-- Cycle through all Layers -->
+	<% stack.layers.each do |layer| %>
+		<div class="row bar">
+			<div class="title"><%= layer.name %></div>
+
+			<!-- Split the layer bar into separate instances -->
+			<% count_instances = layer.instances.count %>
+			<!-- TODO: Fix so I don't have this empty div used for styling -->
+			<div class="col-md-1"></div>
+			<% layer.instances.each do |instance| %>
+				<!-- TODO: Shouldn't need to be a space in manually to add spacing -->
+				<div class="col-md-<%= 10/count_instances %> instance layer <%= instance.status %>">
+					&nbsp;
+					<div class="info">
+						<%= instance.to_json %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</div>
