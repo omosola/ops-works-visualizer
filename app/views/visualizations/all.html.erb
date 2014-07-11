@@ -1,4 +1,4 @@
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="navbar navbar-inverse navbar-fixed-top" id="navbar" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,8 +20,13 @@
 	</div>
 </div>
 
-<div class="container">
+<div class="col-md-2" id="sidebar">
+	<div class="container info-box col-md-12">
 
+	</div>
+</div>
+
+<div class="col-md-10" id="main-body">
 	<div class="starter-template">
 		<!--<p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>-->
 		<% @stacks.each_with_index do |stack, i| %>
@@ -33,28 +38,51 @@
 
 </div><!-- /.container -->
 
-<div id="info-hover-box">
-
-</div>
-
-
 <script>
-	$('.instance').mouseover( function(e) {
+	$('.instance').mouseenter( function(e) {
 		// get the instance json from within the hidden info div
 		// TODO: Think of a better way to do this.
 
 		// NEXT STEP: Only have this happen for the specific element which was selected. not all of them
 		var content = $(this).find('.info').html();
 		// hide, change content, show
-		$('#info-hover-box').hide();
+		/*$('#info-hover-box').hide();
 		$('#info-hover-box').css({
 			top: e.pageY,
 			left: e.pageX
-		});
-		$('#info-hover-box').html(content);
-		$('#info-hover-box').show();
+		});*/
+		$('.info-box').html(parse_json_info_for_display(content));
+		$('.info-box').show();
 
 	});
+
+	$('.instance').mouseout( function(e) {
+		$('.info-hover-box').hide();
+	});
+
+	var parse_json_info_for_display = function(json_string) {
+		// parse the json to generate a cleaner looking HTML
+		// chunk
+		var obj = JSON.parse(json_string);
+
+		var html_string = "";
+
+		for (var property in obj) {
+			html_string = html_string + " " + property + ": " + obj[property] + "<br /><br />";
+		}
+
+		return html_string;
+	};
+
+	var pull_out_needed_json = function(json_string) {
+		// Parse: ID, Host
+		var obj = JSON.parse(json_string);
+		
+	};
+
+	var parse_elb_info_for_display = function() {
+
+	};
 
 </script>
 

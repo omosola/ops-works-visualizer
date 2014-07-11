@@ -1,16 +1,16 @@
 class StacksController < ApplicationController
 
+	# stacks is a resource - uses Rails default RESTful routing patterns
+
+	# GET /stacks
 	def index
-		@stacks = Stack.all(params[:reload])
+		@stacks = Stack.all params[:reload]
 		render :json => @stacks
 	end
 
+	# GET /stacks/:id
 	def show
-		# TODO
-		@stack = Stack.find(params[:id]) || not_found
-	end
-
-	def not_found
-		redirect_to public_path("404.html")
+		@stack = Stack.find params[:id]
+		render :json => @stack
 	end
 end
