@@ -59,6 +59,7 @@ OpsWorksVisualization::Application.routes.draw do
   end
 
   get 'visualizations/all' => 'visualizations#all'
+  get 'visualizations/backbone' => 'visualizations#backbone'
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
