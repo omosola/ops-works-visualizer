@@ -1,0 +1,50 @@
+<style>
+/*	body{
+		background: #eeeeee;    
+	}
+*/
+
+	#holder{
+		overflow:hidden;
+	}
+	.concentric{
+		float:left;
+		border: 1px solid black;
+	}
+
+	.concentricchart path {
+		stroke: #cccccc;
+		stroke-width: 1px;
+		opacity:0.8;
+	}
+
+	.concentricchart text{
+		font-size:12px;    
+	}
+
+	.legend_group circle{
+		stroke: #cccccc;
+		stroke-width: 1px;
+		opacity:0.8;
+	}
+</style>
+
+<div class="visualization-canvas">
+	<% @stacks.each do |stack| %>
+		<div class="stack-node"></div>
+	<% end%>
+</div>
+<div class="sidebar">
+	<div class="info-box"></div>
+</div>
+  
+<div id="holder">
+	<div class="concentric" data-role="concentric" data-width=420 data-height=420 data-thickness=15></div>
+	<div class="concentric" data-role="concentric" data-width=320 data-height=320 data-thickness=17></div>
+	<div class="concentric" data-role="concentric" data-width=220 data-height=220 data-thickness=15></div>
+	<div class="concentric" data-role="concentric" data-width=220 data-height=220 data-thickness=8></div>
+</div>
+
+<ul class="testers">
+	<li><a href="#">toggle</a></li>
+</ul>

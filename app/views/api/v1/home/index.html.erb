@@ -1,0 +1,107 @@
+<div>
+	<div class="sidebar">
+	</div>
+	<div class="stacks-container">
+		<div ng-repeat="stacks in split_stacks">
+			<div ng-repeat="stack in stacks" class="stack-info-container">
+				{{stack.name}}
+
+				<!-- Display ELB -->
+				<div ng-repeat="elb in stack.elbs" class="elb">
+					ELB: {{elb.name}}
+				</div>
+
+				<!-- Display Layers -->
+				<div ng-repeat="layer in stack.layers" class="layer">
+					Layer: {{layer.name}}
+					<!-- Display Instances for each Layer -->
+					<div class="instances">
+						<span ng-repeat="instance in layer.instances" ng-click="displayInstanceInfo(instance)" ng-class="instance.status" class="instance">
+							Instance: {{instance.hostname}}
+						</span>
+					</div>
+				</div>
+			</div>
+		</div><!--./div-row-->
+	</div>
+</div><!--./stack-->
+
+</div>
+
+<!-- <script type="text/ng-template" id="instance-info.html">
+</script>
+
+<script type="text/ng-template" id="layer-info.html">
+</script>
+
+<script type="text/ng-template" id="instance-info.html">
+</script> -->
+
+<!-- Will obviously be moved out of here. just to see everything at once. -->
+<style>
+.sidebar {
+	width: 15%;
+	float: left;
+}
+
+.stacks-container {
+	border-spacing: 10px 20px;
+	display: table;
+	table-layout: fixed;
+
+	width: 85%;
+
+	float: right;
+}
+
+.stack-info-container {
+	background: rgba(0,0,0,0.05);
+	
+	padding: 5px;
+	
+	width: 20%;
+	display: table-cell;
+
+	text-transform: uppercase;
+	font-size: 10px;
+	color: rgba(0,0,0,0.6);
+}
+
+.layer {
+	width: 100%;
+	display: table;
+	border-spacing: 0;
+}
+
+.elb {
+	background: rgba(26, 188, 156, 1.0);
+}
+
+.layer {
+}
+
+.instances {
+	display: table;
+	width: 100%;
+}
+
+.instance {
+	background: gray;
+	display: table-cell;
+}
+
+.online {
+	background: rgba(46, 204, 113, 1.0);
+}
+
+.stopped {
+	background: rgba(231, 76, 60, 1.0);
+}
+</style>
+
+<!-- 
+
+Stack Info for one stack
+
+{"id":"685fda70-b5f8-4774-b534-df03b026ffdd","name":"App: lp-staging","hostname":"Layer_Dependent","default_os":"Ubuntu 12.04 LTS","default_az":"eu-west-1c","instances":[{"id":"f3f9cfbe-4110-45bf-b7ab-fef3ddc8614f","hostname":"app-lp-staging11","status":"online","os":"Ubuntu 12.04 LTS","type":"c1.medium","availability_zone":"eu-west-1c","public_ip":null,"layer_ids":["6625bd55-ea64-4078-af9f-b90f66068400","aba13ca0-f93f-44f1-bb78-25ee5b900fbf"]},{"id":"b9fb8819-3ccc-4778-bc73-98c907a77666","hostname":"app-lp-staging12","status":"stopped","os":"Ubuntu 12.04 LTS","type":"c1.medium","availability_zone":"eu-west-1a","public_ip":null,"layer_ids":["6625bd55-ea64-4078-af9f-b90f66068400","aba13ca0-f93f-44f1-bb78-25ee5b900fbf"]}],"layers":[{"id":"aba13ca0-f93f-44f1-bb78-25ee5b900fbf","type":"rails-app","name":"Rails App Server","instances":[{"id":"f3f9cfbe-4110-45bf-b7ab-fef3ddc8614f","hostname":"app-lp-staging11","status":"online","os":"Ubuntu 12.04 LTS","type":"c1.medium","availability_zone":"eu-west-1c","public_ip":null,"layer_ids":["6625bd55-ea64-4078-af9f-b90f66068400","aba13ca0-f93f-44f1-bb78-25ee5b900fbf"]},{"id":"b9fb8819-3ccc-4778-bc73-98c907a77666","hostname":"app-lp-staging12","status":"stopped","os":"Ubuntu 12.04 LTS","type":"c1.medium","availability_zone":"eu-west-1a","public_ip":null,"layer_ids":["6625bd55-ea64-4078-af9f-b90f66068400","aba13ca0-f93f-44f1-bb78-25ee5b900fbf"]}]},{"id":"6625bd55-ea64-4078-af9f-b90f66068400","type":"custom","name":"Rails Web Server","instances":[{"id":"f3f9cfbe-4110-45bf-b7ab-fef3ddc8614f","hostname":"app-lp-staging11","status":"online","os":"Ubuntu 12.04 LTS","type":"c1.medium","availability_zone":"eu-west-1c","public_ip":null,"layer_ids":["6625bd55-ea64-4078-af9f-b90f66068400","aba13ca0-f93f-44f1-bb78-25ee5b900fbf"]},{"id":"b9fb8819-3ccc-4778-bc73-98c907a77666","hostname":"app-lp-staging12","status":"stopped","os":"Ubuntu 12.04 LTS","type":"c1.medium","availability_zone":"eu-west-1a","public_ip":null,"layer_ids":["6625bd55-ea64-4078-af9f-b90f66068400","aba13ca0-f93f-44f1-bb78-25ee5b900fbf"]}]}],"elbs":[{"name":"lp-staging-vpc","region":"eu-west-1","availability_zones":null}]}
+-->
