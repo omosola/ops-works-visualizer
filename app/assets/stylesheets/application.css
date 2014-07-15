@@ -20,6 +20,9 @@ html, body {
 
 body {
 	background: url("white_wall_hash_bg_2x.png");
+	/*background: #c0392b !important;*/
 	height: 100%;
 	width: 100%;
+
+	overflow: hidden;
 }

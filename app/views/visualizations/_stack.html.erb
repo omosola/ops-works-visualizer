@@ -9,7 +9,8 @@
 	<% stack.elbs.each do |elb| %>
 		<div class="row bar">
 			<div class="col-md-10 col-md-offset-1 instance elb">
-				Elastic Load Balancer
+				<div class="title">ELB - <%= elb.name %></div>
+				&nbsp;
 				<div class="info">
 					<%= elb.to_json %>
 				</div>
@@ -20,16 +21,15 @@
 	<!-- Cycle through all Layers -->
 	<% stack.layers.each do |layer| %>
 		<div class="row bar">
-			<div class="title"></div>
+			<div class="title"><%= layer.name %></div>
 			<!-- Split the layer bar into separate instances -->
 			<% count_instances = layer.instances.count %>
 				<div class="col-md-offset-1">
-
 					<!-- TODO: Fix so I don't have this empty div used for styling -->
 					<% layer.instances.each do |instance| %>
 						<!-- TODO: Shouldn't need to be a space in manually to add spacing -->
-						<div class="col-md-<%= 10/count_instances %> instance layer <%= instance.status %>" style="width: <%= 90/count_instances %>%">
-							&nbsp;
+						<div class="col-md-<%= 10/count_instances %> instance layer <%= instance.status %>" style="width: <%= 90.6/count_instances %>%">
+							<%= instance.hostname %>
 							<div class="info">
 								<%= instance.to_json %>
 							</div>

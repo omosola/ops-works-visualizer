@@ -11,7 +11,7 @@ class Instance
 		@hostname = opts[:hostname]
 		@status = opts[:status]
 		@os = opts[:os]
-		@type = opts[:virtualization_type]
+		@type = opts[:instance_type]
 		@availability_zone = opts[:availability_zone]
 		@public_ip = opts[:public_ip]
 		@layer_ids = opts[:layer_ids]

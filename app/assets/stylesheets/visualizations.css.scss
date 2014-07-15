@@ -10,8 +10,8 @@
 .stack-container {
 	/* background: rgba(189, 195, 199, 1.0); */
 	background: white;
-	min-height: 250px !important;
-	width: 250px;
+	min-height: 400px !important;
+	width: 23%;
 	height: 48%;
 	margin: 1%;
 	border-radius: 3px;
@@ -25,21 +25,42 @@
 		font-weight: light;
 		font-size: 13px;
 	}
+
+}
+
+#sidebar {
+	overflow: scroll;	
+	background: #222;
+	height: 100vh;
+}
+
+#main-body {
+	overflow: scroll;
+	height: 95vh;
 }
 
 .bar {
 	margin-bottom: 5px;
+	position: relative;
+
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+
+	background: rgba(0,0,0,0.02);
+	border-left: 5px solid white;
+	border-right: 5px solid white;
+
+	font-size: 9px;
+	text-transform: uppercase;
+	color: rgba(0, 0, 0, 0.5);
+	text-align: center;
 
 	.title {
-		z-index: -1;
-		position: absolute;
-		text-align: center;
-		color: rgba(0, 0, 0, 0.5);
+		width: 100%;
 	}
 }
 
 .instance {
-
 	border-right: 4px solid rgba(0, 0, 0, 0.1);
 
 	&.elb {
@@ -50,16 +71,18 @@
 	&.layer {
 		/* TODO: Figure out how to display Layer name while still being able to mouse over individual instances - register the mouseover event on the element underneath */
 		background: rgba(149, 165, 166, 1.0); /* light gray - 'concrete' */
+		display: inline-block;
+		margin: 0;
 	}
 
 	&.stopped {
 		background: rgb(231, 76, 60);
-		opacity: 0.7;
+		opacity: 0.6;
 	}
 
 	&.online {
 		background: rgb(46, 204, 113);
-		opacity: 0.7;
+		opacity: 0.6;
 	}
 
 	.info {
@@ -70,11 +93,11 @@
 
 .instance:hover {
 	cursor: pointer;
-	opacity: 1.0;
+	opacity: 0.9;
 }
 
-#info-hover-box {
-	position: absolute;
-	background: rgba(189, 195, 199,1.0);
-	max-width: 200px;
+.info-box {
+	word-wrap: break-word; /* CSS3 */
+	padding-top: 50px;
+	color: rgba(255,255,255,0.5);
 }

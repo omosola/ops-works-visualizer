@@ -89,7 +89,7 @@ class Stack
 				hostname: instance[:hostname],
 				status: instance[:status],
 				os: instance[:os],
-				virtualization_type: instance[:virtualization_type],
+				instance_type: instance[:instance_type],
 				availability_zone: instance[:availability_zone],
 				public_ip: instance[:public_ip],
 				layer_ids: instance[:layer_ids]

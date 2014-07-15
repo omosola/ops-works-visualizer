@@ -1,0 +1,4 @@
+instance = [
+	 {id: 5, layer_ids: [1,2,3,4]},
+	 {id: 6, layer_ids}
+]
