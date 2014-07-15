@@ -17,9 +17,9 @@ App.controller 'StacksCtrl', ['$scope', 'Stacks', ($scope, Stacks) ->
 	# from the controller, which isn't currently the
 	# case (5 & col-md-2)
 	Stacks.query((response) ->
-		$scope.split_stacks = partition(response, 5)
+		$scope.split_stacks = partition(response, 4)
 	)
 
-	$scope.displayInstanceInfo = (instance) ->
-		$scope.sideBarMessage = "Instance Hey"
+	$scope.InfoDisplayHTML = (instance) ->
+		
 ]

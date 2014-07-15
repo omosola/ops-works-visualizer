@@ -4,20 +4,20 @@
 	<div class="stacks-container">
 		<div ng-repeat="stacks in split_stacks">
 			<div ng-repeat="stack in stacks" class="stack-info-container">
-				{{stack.name}}
+				<div class="info-row title">{{stack.name}}</div>
 
 				<!-- Display ELB -->
-				<div ng-repeat="elb in stack.elbs" class="elb">
+				<div ng-repeat="elb in stack.elbs" class="elb info-row">
 					ELB: {{elb.name}}
 				</div>
 
 				<!-- Display Layers -->
-				<div ng-repeat="layer in stack.layers" class="layer">
-					Layer: {{layer.name}}
+				<div ng-repeat="layer in stack.layers" ng-click="console.log('hey')" class="layer info-row">
+					LAYER: {{layer.name}}
 					<!-- Display Instances for each Layer -->
 					<div class="instances">
-						<span ng-repeat="instance in layer.instances" ng-click="displayInstanceInfo(instance)" ng-class="instance.status" class="instance">
-							Instance: {{instance.hostname}}
+						<span ng-repeat="instance in layer.instances" ng-class="instance.status" class="instance">
+							{{instance.hostname}}
 						</span>
 					</div>
 				</div>
@@ -40,7 +40,7 @@
 <!-- Will obviously be moved out of here. just to see everything at once. -->
 <style>
 .sidebar {
-	width: 15%;
+	width: 10%;
 	float: left;
 }
 
@@ -49,53 +49,76 @@
 	display: table;
 	table-layout: fixed;
 
-	width: 85%;
+	width: 90%;
 
 	float: right;
 }
 
 .stack-info-container {
-	background: rgba(0,0,0,0.05);
+	background: rgba(255,255,255,0.9);
 	
-	padding: 5px;
 	
-	width: 20%;
+	
+	width: 25%;
 	display: table-cell;
 
 	text-transform: uppercase;
-	font-size: 10px;
+	font-size: 12px;
 	color: rgba(0,0,0,0.6);
 }
+
+.info-row {
+	border-bottom: 1px solid rgba(0,0,0,0.08);
+	padding: 10px 0 10px 10px;
+
+	line-height: 15px;
+}
+
+.info-row:hover {
+	background-color: rgba(0,0,0,0.1);
+}
+
+.title {
+	padding: 30px 0 30px 0;
+	text-align: center;
+	font-weight: bold;
+
+	background: rgba(0,0,0,0.02);
+}
+
 
 .layer {
 	width: 100%;
 	display: table;
 	border-spacing: 0;
+
+	/*background: rgba(211, 84, 0, 0.1);*/
 }
 
 .elb {
-	background: rgba(26, 188, 156, 1.0);
-}
+	/*background: rgba(26, 188, 156, 0.05);*/
+	/*background: rgba(41, 128, 185, 0.1);*/
 
-.layer {
+	font-weight: bold;
 }
 
 .instances {
 	display: table;
-	width: 100%;
+	width: 98%;
+
+	font-size: 9px;
 }
 
 .instance {
-	background: gray;
 	display: table-cell;
 }
 
 .online {
-	background: rgba(46, 204, 113, 1.0);
+	border-bottom: 2px solid rgba(46, 204, 113, 0.5);
 }
 
 .stopped {
-	background: rgba(231, 76, 60, 1.0);
+	border-bottom: 2px solid rgba(231, 76, 60, 0.5);
 }
 </style>
 

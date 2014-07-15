@@ -19,7 +19,9 @@ html, body {
 }
 
 body {
-	background: url("white_wall_hash_bg_2x.png");
+	/*background: url("white_wall_hash_bg_2x.png");*/
+	background: url("simple-blur-ipad-background.jpg");
+	background-size: 100%;
 	/*background: #c0392b !important;*/
 	height: 100%;
 	width: 100%;
