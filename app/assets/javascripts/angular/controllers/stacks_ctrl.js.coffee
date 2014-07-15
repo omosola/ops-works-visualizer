@@ -9,8 +9,6 @@ App.controller 'StacksCtrl', ['$scope', 'Stacks', ($scope, Stacks) ->
 
 	$scope.message = "Hello World"
 
-	$scope.sideBarMessage = ""
-
 	# TODO
 	# Would prefer to not have the 5 hardcoded
 	# and also would be better to divorce the view
@@ -20,6 +18,25 @@ App.controller 'StacksCtrl', ['$scope', 'Stacks', ($scope, Stacks) ->
 		$scope.split_stacks = partition(response, 4)
 	)
 
-	$scope.InfoDisplayHTML = (instance) ->
-		
+	$scope.events = {}
+	$scope.events.updateDetailsBoxMessage = (event, obj) ->
+
+			detailsBoxMessage = "<div> </p>Details: </p>"
+			for key,value of obj
+				if(typeof(value) == "string")
+					detailsBoxMessage += "<p>" + key + " : " + obj[key] + "</p>"
+			detailsBoxMessage += "</div>"
+
+			$scope.detailsBoxMessage = detailsBoxMessage
+
+			# TODO: Use Directives for DOM manipulation instead of calling
+			# JQUERY directly from Controller!
+
+			$('#details-box').css({
+				'top': event.pageY,
+				'left': event.pageX
+			})
+
 ]
+
+# TODO: Hide on mouse out
