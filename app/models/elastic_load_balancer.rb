@@ -1,6 +1,5 @@
-require './lib/ops_works_wrapper'
-
 class ElasticLoadBalancer
+	
     attr_reader :name, :region, :availability_zones
 
     def initialize(name, opts)

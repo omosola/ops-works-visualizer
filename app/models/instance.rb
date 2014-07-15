@@ -1,5 +1,3 @@
-require './lib/ops_works_wrapper'
-
 class Instance
 
 	attr_reader :id, :hostname, :status, :os, :type, :availability_zone, :public_ip, :layer_ids

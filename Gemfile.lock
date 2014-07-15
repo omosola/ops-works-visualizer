@@ -40,6 +40,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    ejs (1.0.0)
     erubis (2.7.0)
     execjs (2.2.1)
     hike (1.2.3)
@@ -74,6 +75,10 @@ GEM
       activesupport (= 3.2.18)
       bundler (~> 1.0)
       railties (= 3.2.18)
+    rails-backbone (0.7.2)
+      coffee-script (~> 2.2.0)
+      ejs (~> 1.0.0)
+      railties (>= 3.1.0)
     railties (3.2.18)
       actionpack (= 3.2.18)
       activesupport (= 3.2.18)
@@ -113,5 +118,6 @@ DEPENDENCIES
   jquery-rails
   mysql2
   rails (= 3.2.18)
+  rails-backbone
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
