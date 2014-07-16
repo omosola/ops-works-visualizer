@@ -1,7 +1,9 @@
+	<%= content_for :title, "OpsWorks Visualization" %>
+
 	<div ng-bind-html-unsafe="detailsBoxMessage" id="details-box">
 	</div>
 
-	{{detailsBoxElem}}
+
 	<div class="stacks-container">
 		<div ng-repeat="stacks in split_stacks">
 			<div ng-repeat="stack in stacks" class="stack-info-container">
