@@ -19,10 +19,8 @@ html, body {
 }
 
 body {
-	/*background: url("white_wall_hash_bg_2x.png");*/
 	background: url("simple-blur-ipad-background.jpg");
 	background-size: 100%;
-	/*background: #c0392b !important;*/
 	height: 100%;
 	width: 100%;
 }
@@ -32,8 +30,10 @@ body {
 	position: absolute;
 	background: rgba(0, 0, 0, 0.7);
 	padding: 10px;
-	color: rgba(255,255,255,0.9);
+
+	color: rgba(255, 255, 255, 0.9);
 	font-size: 11px;
+	
 	width: 200px;
 	border-radius: 2px;
 }
@@ -46,7 +46,7 @@ body {
 }
 
 .stack-info-container {
-	background: rgba(255,255,255,0.9);
+	background: rgba(255, 255, 255, 0.9);
 	
 	width: 20%;
 	display: table-cell;
@@ -75,21 +75,13 @@ body {
 	background: rgba(0,0,0,0.02);
 }
 
-
 .layer {
 	width: 100%;
 	display: table;
 	border-spacing: 0;
-
-	/*background: rgba(211, 84, 0, 0.01);*/
 }
 
-.elb {
-	/*background: rgba(26, 188, 156, 0.02);*/
-	/*background: rgba(41, 128, 185, 0.1);*/
-
-	/*font-weight: bold;*/
-}
+.elb { }
 
 .instances {
 	display: table;

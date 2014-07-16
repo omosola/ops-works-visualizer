@@ -7,8 +7,6 @@ App.controller 'StacksCtrl', ['$scope', 'Stacks', ($scope, Stacks) ->
 			result.push(array.splice(0,size))
 		result
 
-	$scope.message = "Hello World"
-
 	# TODO
 	# Would prefer to not have the 5 hardcoded
 	# and also would be better to divorce the view
@@ -39,4 +37,4 @@ App.controller 'StacksCtrl', ['$scope', 'Stacks', ($scope, Stacks) ->
 
 ]
 
-# TODO: Hide on mouse out
+# TODO: Hide when mouse leaves stack canvas area

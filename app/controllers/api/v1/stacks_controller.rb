@@ -1,7 +1,5 @@
 class Api::V1::StacksController < ApplicationController
-
-	# stacks is a resource - uses Rails default RESTful routing patterns
-
+	
 	# GET /stacks
 	def index
 		@stacks = Stack.all params[:reload]

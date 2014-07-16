@@ -2,22 +2,6 @@ require './lib/ops_works_wrapper'
 
 class Stack
 
-  ######################################################################################################################
-  # TODO Items:
-  # 1) OpsWOrksWrapper: 				Rethink using OpsWorksWrapper (only used so I don't have the aws opsworks intialization
-  # 									tied to the Stack model)
-  # 2) Self.find: 						Work on bsearch. It shouldn't be called on a nil object since I'm checking if
-  # 									all_stacks has a value first, but somehow it is!
-  # 3) load_layers, etc: 				Come up with a better name than load_*, I want something more like get_layers
-  # 									but it won't actually act as a getter, since I already have that from
-  # 									attr_reader :layers
-  # 4) associate_instances_with_layers:	Yuck, don't like the way I'ma dding instances to the layers
-  # 5) associate_instances_with_layers: Don't like the name add_instances_to_layers
-  # 6) load_*: 							Right now, the only thing that can be reloaded is the whole list of stack,
-  # 									not the layers, instances, elbs, or individual stacks.
-  # 7) associate_instances_with_layers:	Write this in more of a functional style
-  ######################################################################################################################
-
 	attr_reader :id, :name, :hostname, :default_os, :default_az, :elbs, :instances, :layers
 
   ######################################################################################################################
@@ -32,7 +16,7 @@ class Stack
 		end
 	end
 
-	## WORK IN PROGRESS
+	## TODO - WORK IN PROGRESS
 	def self.find(id)
 		all_stacks = Rails.cache.fetch("all_stacks")
 		if !all_stacks
@@ -42,7 +26,7 @@ class Stack
 		end
 	end
 
-	# private helper method
+	## private helper method
 	def self.load_stacks
 		stacks = OpsWorksWrapper::client.describe_stacks.data[:stacks]
 
@@ -72,6 +56,7 @@ class Stack
   # Instance methods
   ######################################################################################################################
 
+  	# Stack object initializer
 	def initialize(id, opts = {})
 		return if !id
 
