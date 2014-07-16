@@ -1,8 +1,8 @@
 window.App.directive('detailsBox', -> 
 	generateTemplate = () ->
 		html = "<div class='details-box'>"
-		
-		html += "{{object}}"
+
+		html += "</div>"
 
 		## TODO: Need access to object here in order
 		# to iterate through the keys

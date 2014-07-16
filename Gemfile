@@ -40,3 +40,6 @@ gem 'jquery-rails'
 gem 'aws-sdk'
 
 gem 'rails-backbone'
+
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'

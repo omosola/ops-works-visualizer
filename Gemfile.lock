@@ -108,6 +108,9 @@ GEM
     uglifier (2.5.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    wicked_pdf (0.11.0)
+      rails
+    wkhtmltopdf-binary (0.9.9.3)
 
 PLATFORMS
   ruby
@@ -121,3 +124,5 @@ DEPENDENCIES
   rails-backbone
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
+  wicked_pdf
+  wkhtmltopdf-binary
