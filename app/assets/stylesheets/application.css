@@ -26,8 +26,12 @@ body {
 }
 
 /* visualization - home/index */
-#details-box {
+.details-box {
 	position: absolute;
+
+	top: 10px;
+	left: 10px;
+
 	background: rgba(0, 0, 0, 0.7);
 	padding: 10px;
 
@@ -36,11 +40,18 @@ body {
 	
 	width: 200px;
 	border-radius: 2px;
+
+	opacity: 0;
+}
+
+.details-box:hover {
+	opacity: 1;
 }
 
 .stacks-container {
 	border-spacing: 10px 10px;
 	display: table;
+	table-layout: fixed;
 
 	width: 100%;
 }
@@ -48,7 +59,7 @@ body {
 .stack-info-container {
 	background: rgba(255, 255, 255, 0.9);
 	
-	width: 20%;
+	max-width: 225px;
 	display: table-cell;
 
 	text-transform: uppercase;
@@ -79,19 +90,27 @@ body {
 	width: 100%;
 	display: table;
 	border-spacing: 0;
+
+	position: relative;
 }
 
-.elb { }
+.elb {
+	position: relative;
+}
 
 .instances {
 	display: table;
 	width: 98%;
 
 	font-size: 9px;
+
+	position: relative;
 }
 
 .instance {
 	display: table-cell;
+
+	position: relative;
 }
 
 .instance:hover {
