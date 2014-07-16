@@ -7,17 +7,26 @@ App.controller 'StacksCtrl', ['$scope', 'Stacks', ($scope, Stacks) ->
 			result.push(array.splice(0,size))
 		result
 
-	# TODO
-	# Would prefer to not have the 5 hardcoded
-	# and also would be better to divorce the view
-	# from the controller, which isn't currently the
-	# case (5 & col-md-2)
+	############################################################################################
+	## TODO List:
+	## 1) Move detailsBox to a directive
+	##		* What I would like - Mouseove on a layer, elb, stack title, or instance
+	##		 and have the info displayed
+	##		* Hide detailsBox when you mouseout of any of the above elements
+	## 2) Use a template for the detailsBox instead of generating the HTML in the controller
+	## 		* Gives me more control over the look of the detailsBox
+	##
+	############################################################################################
+
+	$scope.numPartitions = 4
+
 	Stacks.query((response) ->
-		$scope.split_stacks = partition(response, 4)
+		# partition indicates the number of stacks to display per row
+		$scope.splitStacks = partition(response, $scope.numPartitions)
 	)
 
 	$scope.events = {}
-	$scope.events.updateDetailsBoxMessage = (event, obj) ->
+	$scope.events.updateDetailsBox = (event, obj) ->
 
 			detailsBoxMessage = "<div> </p>Details: </p>"
 			for key,value of obj
@@ -36,5 +45,3 @@ App.controller 'StacksCtrl', ['$scope', 'Stacks', ($scope, Stacks) ->
 			})
 
 ]
-
-# TODO: Hide when mouse leaves stack canvas area

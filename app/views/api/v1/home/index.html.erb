@@ -1,25 +1,23 @@
 	<%= content_for :title, "OpsWorks Visualization" %>
 
-	<div ng-bind-html-unsafe="detailsBoxMessage" id="details-box">
-	</div>
-
+	<div data-details-box></div>
 
 	<div class="stacks-container">
-		<div ng-repeat="stacks in split_stacks">
+		<div ng-repeat="stacks in splitStacks">
 			<div ng-repeat="stack in stacks" class="stack-info-container">
-				<div class="info-row title" ng-mouseover="events.updateDetailsBoxMessage($event, stack)" >{{stack.name}}</div>
+				<div class="info-row title" ng-mouseover="events.updateDetailsBox($event, stack)" >{{stack.name}}</div>
 
 				<!-- Display ELB -->
-				<div ng-repeat="elb in stack.elbs" ng-mouseover="events.updateDetailsBoxMessage($event, elb)" class="elb info-row">
+				<div ng-repeat="elb in stack.elbs" ng-mouseover="events.updateDetailsBox($event, elb)" class="elb info-row">
 					ELB: {{elb.name}}
 				</div>
 
 				<!-- Display Layers -->
 				<div ng-repeat="layer in stack.layers" class="layer info-row">
-					<span ng-mouseover="events.updateDetailsBoxMessage($event, layer)">LAYER: {{layer.name}}</span>
+					<span ng-mouseover="events.updateDetailsBox($event, layer)">LAYER: {{layer.name}}</span>
 					<!-- Display Instances for each Layer -->
 					<div class="instances">
-						<span ng-repeat="instance in layer.instances" ng-mouseover="events.updateDetailsBoxMessage($event, instance)" ng-class="instance.status" ng-mouseover="events.updateDetailsBoxMessage(instance)" class="instance">
+						<span ng-repeat="instance in layer.instances" ng-mouseover="events.updateDetailsBox($event, instance)" ng-class="instance.status" ng-mouseover="events.updateDetailsBox(instance)" class="instance">
 							{{instance.hostname}}
 						</span>
 					</div>
