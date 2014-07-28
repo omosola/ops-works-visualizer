@@ -9,15 +9,15 @@
 <script type="text/ng-template" id="stackdetailsboxtemplate.html">
   <div class="stack-details-box">
     <div class="stack-visualization">
-      <b>STACK:</b> {{selectedStack.name}} <br />
-      <b>ELBS:</b> <br />
-      <div ng-repeat="elb in selectedStack.elbs" class="elb">
-        {{elb.name}}<br />
+      <div class="title">{{selectedStack.name}}</div>
+      
+      <div ng-repeat="elb in selectedStack.elbs" class="elb visualization-layer">
+        ELB: {{elb.name}}<br />
       </div>
-      <b>LAYERS:</b> <br />
-      <div ng-repeat="layer in selectedStack.layers" class="layer">
-          <u>{{layer.name}}</u>
-          <div ng-repeat="instance in layer.instances" class="instance">
+      <div ng-repeat="layer in selectedStack.layers" class="layer visualization-layer">
+          <div class="title">{{layer.name}}</div>
+          <!-- TODO: Use a conditional statement to set the class instead of including instance.status // as the class, since it's more opaque (the connection between ) -->
+          <div ng-repeat="instance in layer.instances" class="instance {{instance.status}}">
           {{instance.hostname}}
           </div>
       </div>
@@ -29,9 +29,9 @@
 </script>
 
 <script type="text/ng-template" id="stacksidebartemplate.html">
-<div class="stack-sidebar">
-{{selectedStack.name}}
-</div>
+  <div class="stack-sidebar">
+
+  </div>
 </script>
 
 <!--  -->

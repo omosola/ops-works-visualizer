@@ -6,6 +6,8 @@
   width: 100%;
   height: 100%;
 
+  margin-top: 10px;
+
   .content {
     width: 90%;
     height: 100%;
@@ -26,18 +28,52 @@
     width: 80%;
     height: 100%;
 
-    background: rgba(200, 200, 200, 0.9);
+    background: rgba(236, 240, 241,1.0);
 
     float: left;
+
+    .title {
+      font-size: 16px;
+      text-align: center;
+      text-transform: uppercase;
+
+      margin: 20px 0;
+    }
   }
 
   .stack-sidebar {
     width: 20%;
     height: 100%;
 
-    background: rgba(255,255,0,0.4);
+    background: rgba(52, 73, 94,1.0);
 
     float: right;
+  }
+
+  .visualization-layer {
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+
+    .title {
+      width: 20%;
+      float: right;
+    }
+  }
+
+  .instance {
+    width: 100px;
+    height: 100px;
+
+    text-transform: uppercase;
+
+    display: inline-block;
+
+    &.online {
+      background: rgba(39, 174, 96, 1.0);
+    }
+
+    &.stopped {
+      background: rgba(192, 57, 43,1.0);
+    }
   }
 
 }
