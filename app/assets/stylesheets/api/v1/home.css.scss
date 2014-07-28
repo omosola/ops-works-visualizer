@@ -1,3 +1,43 @@
 // Place all the styles related to the api/v1/home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.stacks-dashboard {
+  width: 100%;
+  height: 100%;
+
+  .content {
+    width: 90%;
+    height: 100%;
+    margin-left: 5%;
+  }
+
+  .stack-details-box {
+    height: 90%;
+
+    margin: 20px auto;  
+
+    border-radius: 5px;
+
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .stack-visualization {
+    width: 80%;
+    height: 100%;
+
+    background: rgba(200, 200, 200, 0.9);
+
+    float: left;
+  }
+
+  .stack-sidebar {
+    width: 20%;
+    height: 100%;
+
+    background: rgba(255,255,0,0.4);
+
+    float: right;
+  }
+
+}

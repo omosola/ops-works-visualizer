@@ -1,0 +1,48 @@
+<%= content_for :title, "OpsWorks Visualization - Version 2" %>
+
+<!--
+      TODO: Don't have selectedStack directly referenced from templates. Make it more generic by just referencing a stack
+      passed into the directive. Then reference "stack" that is passed in as "data"
+-->
+
+<!-- Templates -->
+<script type="text/ng-template" id="stackdetailsboxtemplate.html">
+  <div class="stack-details-box">
+    <div class="stack-visualization">
+      <b>STACK:</b> {{selectedStack.name}} <br />
+      <b>ELBS:</b> <br />
+      <div ng-repeat="elb in selectedStack.elbs" class="elb">
+        {{elb.name}}<br />
+      </div>
+      <b>LAYERS:</b> <br />
+      <div ng-repeat="layer in selectedStack.layers" class="layer">
+          <u>{{layer.name}}</u>
+          <div ng-repeat="instance in layer.instances" class="instance">
+          {{instance.hostname}}
+          </div>
+      </div>
+
+    </div>
+
+    <div stack-sidebar></div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="stacksidebartemplate.html">
+<div class="stack-sidebar">
+{{selectedStack.name}}
+</div>
+</script>
+
+<!--  -->
+<div class="stacks-dashboard"><!-- Dropdown menu for stacks -->
+  <div class="content">
+
+    <select ng-model="selectedStack" ng-options="stack.name for stack in stacks" ng-init="selectedStack = stacks[0]"></select>
+
+    <!-- Individual Display for a stack -->
+    <div stack-details-box></div>
+
+    <!-- Stack Info Bar -->
+  </div>
+</div>

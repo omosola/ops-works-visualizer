@@ -26,7 +26,7 @@ body {
 }
 
 /* visualization - home/index */
-.details-box {
+.details-box-old {
 	position: absolute;
 
 	top: 10px;
@@ -44,11 +44,11 @@ body {
 	opacity: 0;
 }
 
-.details-box:hover {
+.details-box-old:hover {
 	opacity: 1;
 }
 
-.stacks-container {
+.stacks-container-old {
 	border-spacing: 10px 10px;
 	display: table;
 	table-layout: fixed;
@@ -56,7 +56,7 @@ body {
 	width: 100%;
 }
 
-.stack-info-container {
+.stack-info-container-old {
 	background: rgba(255, 255, 255, 0.9);
 	
 	max-width: 225px;
@@ -67,18 +67,18 @@ body {
 	color: rgba(0,0,0,0.6);
 }
 
-.info-row {
+.info-row-old {
 	border-bottom: 1px solid rgba(0,0,0,0.08);
 	padding: 10px 0 10px 10px;
 
 	line-height: 15px;
 }
 
-.info-row:hover {
+.info-row-old:hover {
 	background-color: rgba(0,0,0,0.1);
 }
 
-.title {
+.title-old {
 	padding: 30px 0 30px 0;
 	text-align: center;
 	font-weight: bold;
@@ -86,7 +86,7 @@ body {
 	background: rgba(0,0,0,0.02);
 }
 
-.layer {
+.layer-old {
 	width: 100%;
 	display: table;
 	border-spacing: 0;
@@ -94,11 +94,11 @@ body {
 	position: relative;
 }
 
-.elb {
+.elb-old {
 	position: relative;
 }
 
-.instances {
+.instances-old {
 	display: table;
 	width: 98%;
 
@@ -107,21 +107,21 @@ body {
 	position: relative;
 }
 
-.instance {
+.instance-old {
 	display: table-cell;
 
 	position: relative;
 }
 
-.instance:hover {
+.instance-old:hover {
 	opacity: 0.7;
 	cursor: pointer;
 }
 
-.online {
+.online-old {
 	border-bottom: 2px solid rgba(46, 204, 113, 0.5);
 }
 
-.stopped {
+.stopped-old {
 	border-bottom: 2px solid rgba(231, 76, 60, 0.5);
 }
