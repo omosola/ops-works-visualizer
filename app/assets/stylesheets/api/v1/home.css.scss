@@ -17,7 +17,7 @@
   .stack-details-box {
     height: 90%;
 
-    margin: 20px auto;  
+    margin: 10px auto;
 
     border-radius: 5px;
 
@@ -29,6 +29,8 @@
     height: 100%;
 
     background: rgba(236, 240, 241,1.0);
+
+    padding: 1%;
 
     float: left;
 
@@ -51,21 +53,44 @@
   }
 
   .visualization-layer {
-    border-bottom: 1px solid rgba(0,0,0,0.15);
+    border-top: 1px dotted rgba(0,0,0,0.3); 
+    border-bottom: 1px dotted rgba(0,0,0,0.3);
 
-    .title {
+    padding: 5px 0 5px 0;
+
+    .layer-title {
       width: 20%;
-      float: right;
+      display: inline-block;
+
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.7);
+    }
+
+    .info {
+      width: 79%; /* where is the extra 1% margin or padding coming from - 80% + 20% is somehow overflowing */
+      display: inline-block;
+
+      .instances {
+        margin: 0 auto;
+        background: gray;
+
+        display: inline-block;
+      }
+
     }
   }
 
   .instance {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 90px;
 
     text-transform: uppercase;
 
     display: inline-block;
+
+    margin-right: 20px;
+
+    font-size: 12px;
 
     &.online {
       background: rgba(39, 174, 96, 1.0);
@@ -74,6 +99,19 @@
     &.stopped {
       background: rgba(192, 57, 43,1.0);
     }
+
+    &.elb-instance {
+      background: rgba(142, 68, 173, 1.0);
+      margin: 0 auto;
+    }
+
+    &.stopping {
+      background: rgba(211, 84, 0, 0.7);
+    }
   }
 
+}
+
+.clearfix {
+  clear: both;
 }

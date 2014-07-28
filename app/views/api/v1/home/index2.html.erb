@@ -8,23 +8,40 @@
 <!-- Templates -->
 <script type="text/ng-template" id="stackdetailsboxtemplate.html">
   <div class="stack-details-box">
-    <div class="stack-visualization">
-      <div class="title">{{selectedStack.name}}</div>
-      
-      <div ng-repeat="elb in selectedStack.elbs" class="elb visualization-layer">
-        ELB: {{elb.name}}<br />
-      </div>
-      <div ng-repeat="layer in selectedStack.layers" class="layer visualization-layer">
-          <div class="title">{{layer.name}}</div>
-          <!-- TODO: Use a conditional statement to set the class instead of including instance.status // as the class, since it's more opaque (the connection between ) -->
-          <div ng-repeat="instance in layer.instances" class="instance {{instance.status}}">
-          {{instance.hostname}}
+    
+      <div class="stack-visualization">
+        
+          <!-- Visualization Title -->
+          <div class="title">{{selectedStack.name}}</div>
+          <!-- ELBs -->
+          <div ng-repeat="elb in selectedStack.elbs" class="elb visualization-layer">
+              <div class="layer-title">
+                  {{elb.name}}
+              </div>
+              <div class="elb-instance instance">
+                  {{elb.name}}
+              </div>
           </div>
-      </div>
 
-    </div>
+          <!-- Layers -->
+          <div ng-repeat="layer in selectedStack.layers" class="layer visualization-layer">
+              <!-- Layer: Title -->
+              <div class="layer-title">{{layer.name}}</div>
+              <!-- TODO: Use a conditional statement to set the class instead of including instance.status as the class, since it''s more opaque (the connection between ) Layer: Info -->
+              <div class="info">
+                  <div class="instances">
+                      <div ng-repeat="instance in layer.instances" class="instance {{instance.status}}">
+                          {{instance.hostname}}
+                      </div>
+                  </div>
+              </div><!-- end of info -->
 
-    <div stack-sidebar></div>
+          </div><!--  end of layer -->
+      </div><!-- end of stack visualization -->
+
+    <div class="stack-sidebar">
+    </div><!--  end of sidebar -->
+
   </div>
 </script>
 
@@ -38,6 +55,7 @@
 <div class="stacks-dashboard"><!-- Dropdown menu for stacks -->
   <div class="content">
 
+    <!-- ToDo: Default dropdown to first loaded stack -->
     <select ng-model="selectedStack" ng-options="stack.name for stack in stacks" ng-init="selectedStack = stacks[0]"></select>
 
     <!-- Individual Display for a stack -->
