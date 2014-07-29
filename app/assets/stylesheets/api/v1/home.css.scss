@@ -135,6 +135,15 @@
       background: rgba(46, 204, 113, 0.4);
     }
 
+    &.pending {
+      background: rgba(46, 204, 113, 0.4);
+    }
+
+    &.stopping {
+      /* border: 1px solid rgba(211, 84, 0,  0.2); */
+      background: rgba(142, 68, 173,  0.4);
+    }
+
     &.stopped {
       /* border: 1px solid rgba(192, 57, 43, 0.2); */
       background: rgba(192, 57, 43, 0.4);
@@ -142,11 +151,6 @@
 
     &.elb-instance {
       /* border: 1px solid rgba(142, 68, 173,  0.2); */
-      background: rgba(142, 68, 173,  0.4);
-    }
-
-    &.stopping {
-      /* border: 1px solid rgba(211, 84, 0,  0.2); */
       background: rgba(142, 68, 173,  0.4);
     }
   }
@@ -161,12 +165,8 @@
   border: 0 !important; /* remove border */
   -webkit-appearance: none; /* remove default chrome/safari style */
   -moz-appearance: none; /* remove default firefox style */
-  background: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.5);
   background-position: 80px 8px;
-
-  text-indent: 0.01px;
-  text-overflow: "";
-  text-align: center;
   
   padding: 5px;
 
@@ -183,5 +183,5 @@
 
   border-radius: 5px;
 
-  background: url('http://www.iconsdb.com/icons/preview/color/666666/arrow-211-m.png') no-repeat right;
+  background: url(/assets/down-arrow.png) no-repeat right;
 }

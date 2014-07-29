@@ -4,6 +4,7 @@
         
           <!-- Visualization Title -->
           <div class="title">{{selectedStack.name}}</div>
+
           <!-- ELBs -->
           <div ng-repeat="elb in selectedStack.elbs" class="elb visualization-layer" ng-show="elb.checked">
 
@@ -21,11 +22,9 @@
           </div>
 
           <!-- Layers -->
-          <!-- How to: Have an attribute 'checked' for each element (elb, layer, instance) and only
-          display if the element is checked in the sidebar -->
           <div ng-repeat="layer in selectedStack.layers" class="layer visualization-layer" ng-show="layer.checked">
 
-              <!-- TODO: Use a conditional statement to set the class instead of including instance.status as the class, since it''s more opaque (the connection between ) Layer: Info -->
+              <!-- TODO: Use a conditional statement to set the class instead of including instance.status as the class, since it makes the connection between the CSS selectors and instance status more opaque Layer: Info -->
               <div class="info">
                   <div class="instances">
                       <div ng-repeat="instance in layer.instances" class="instance {{instance.status}}">
@@ -39,9 +38,10 @@
                   <div class="layer-title">{{layer.name}}</div>
               </div>
 
-          </div><!--  end of layer -->
-      </div><!-- end of stack visualization -->
+          </div>
+      </div>
 
     <stack-sidebar/>
 
   </div>
+  

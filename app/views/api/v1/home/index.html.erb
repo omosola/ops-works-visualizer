@@ -1,34 +1,22 @@
-<%= content_for :title, "OpsWorks Visualization" %>
+<%= content_for :title, "OpsWorks Visualization - Version 2" %>
 
-<div class="stacks-container">
+<!--
+      TODO: Have directive reference a passed in stack as opposed to "selectedStack"
+      that way, they can be used in more places if needed
+-->
 
-	<div ng-repeat="stacks in splitStacks"><!-- Display Stacks -->
-		<div ng-repeat="stack in stacks" class="stack-info-container" style="width: {{100/numPartitions}}%">
-			<div class="info-row title">{{stack.name}}</div>
+<div class="stacks-dashboard">
+  <div class="content">
 
-			<!-- Display ELB -->
-			<div ng-repeat="elb in stack.elbs" class="elb info-row">
-				ELB: {{elb.name}}
-				<div data-details-box object="{{elb}}"></div>
-			</div><!-- /Display ELB -->
+    <!-- ToDo: Default dropdown to first loaded stack -->
+    <div class="styled-select">
+      <select ng-model="selectedStack" ng-options="stack.name for stack in stacks"></select>
+    </div>
 
-			<!-- Display Layers -->
-			<div ng-repeat="layer in stack.layers" class="layer info-row">
-				<span>LAYER: {{layer.name}}</span>
-				<div data-details-box object="{{layer}}"></div>
+    <div stack-details-box></div>
 
-				<!-- Display Instances for each Layer -->
-				<div class="instances">
-					<span ng-repeat="instance in layer.instances" ng-class="instance.status" class="instance">
-						{{instance.hostname}}
-						<div data-details-box object="{{instance}}"></div>
-					</span>
-				</div><!-- Display Instances -->
-
-			</div><!-- /Display Layers -->
-
-		</div>
-
-	</div><!-- /Display Stacks -->
-
+  </div>
 </div>
+
+
+
