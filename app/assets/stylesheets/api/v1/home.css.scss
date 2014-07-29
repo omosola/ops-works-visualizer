@@ -4,7 +4,7 @@
 
 .stacks-dashboard {
   width: 100%;
-  height: 100%;
+  height: 95%;
 
   margin-top: 10px;
 
@@ -28,7 +28,7 @@
     width: 80%;
     height: 100%;
 
-    background: rgba(236, 240, 241,1.0);
+    background: rgba(236, 240, 241, 1.0);
 
     padding: 1%;
 
@@ -47,10 +47,13 @@
     width: 20%;
     height: 100%;
 
-    background: rgba(52, 73, 94,1.0);
+    background: rgba(22, 160, 133, 0.8);
 
     color: rgba(255,255,255,0.6);
+    font-size: 10px;
     text-transform: uppercase;
+
+    padding: 10px;
 
     float: right;
   }
@@ -64,7 +67,7 @@
     position: relative;
 
     .layer-header {
-      width: 25%;
+      width: 10%;
       display: inline-block;
 
       text-transform: uppercase;
@@ -79,7 +82,7 @@
     }
 
     .info {
-      width: 74%; /* where is the extra 1% margin or padding coming from - 80% + 20% is somehow overflowing */
+      width: 84%; /* where is the extra 1% margin or padding coming from - 80% + 20% is somehow overflowing */
       display: inline-block;
     }
   }
@@ -96,7 +99,7 @@
     height: 90px;
 
     text-transform: uppercase;
-    color: rgba(100, 100, 100, 0.9);
+    color: rgba(100, 100, 100, 1.0);
 
     display: inline-block;
 
@@ -110,16 +113,16 @@
     }
 
     &.stopped {
-      background: rgba(192, 57, 43,1.0);
+      background: rgba(192, 57, 43,  0.6);
     }
 
     &.elb-instance {
-      background: rgba(142, 68, 173, 0.7);
+      background: rgba(142, 68, 173,  0.6);
       margin: 0 auto;
     }
 
     &.stopping {
-      background: rgba(211, 84, 0, 0.7);
+      background: rgba(211, 84, 0,  0.6);
     }
   }
 
@@ -127,4 +130,26 @@
 
 .clearfix {
   clear: both;
+}
+
+select {
+  border: 0 !important; /* remove border */
+  -webkit-appearance: none; /* remove default chrome/safari style */
+  -moz-appearance: none; /* remove default firefox style */
+  background: rgba(255,255,255,0.4);
+  background-position: 80px 8px;
+
+  width: 10%;
+  min-width: 230px;
+  height: 5%;
+  min-height: 40px;
+
+  text-indent: 0.01px;
+  text-overflow: "";
+  text-align: center;
+  padding-left: 10px;
+
+  cursor: pointer;
+
+  color: #1455a2;
 }
