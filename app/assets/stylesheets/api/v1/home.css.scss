@@ -49,35 +49,46 @@
 
     background: rgba(52, 73, 94,1.0);
 
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+
     float: right;
   }
 
   .visualization-layer {
-    border-top: 1px dotted rgba(0,0,0,0.3); 
-    border-bottom: 1px dotted rgba(0,0,0,0.3);
+    border-top: 1px dotted rgba(0,0,0,0.1); 
+    border-bottom: 1px dotted rgba(0,0,0,0.1);
 
     padding: 5px 0 5px 0;
 
-    .layer-title {
-      width: 20%;
+    position: relative;
+
+    .layer-header {
+      width: 25%;
       display: inline-block;
 
       text-transform: uppercase;
       color: rgba(0,0,0,0.7);
+      
+      .layer-title {
+        position: absolute;
+        bottom: 0px;
+
+        color: rgba(100,100,100,0.6);
+      }
     }
 
     .info {
-      width: 79%; /* where is the extra 1% margin or padding coming from - 80% + 20% is somehow overflowing */
+      width: 74%; /* where is the extra 1% margin or padding coming from - 80% + 20% is somehow overflowing */
       display: inline-block;
-
-      .instances {
-        margin: 0 auto;
-        background: gray;
-
-        display: inline-block;
-      }
-
     }
+  }
+
+  .instances {
+    margin: 0 auto;
+    /* background: rgba(100,100,100,0.2); */
+
+    display: inline-block;
   }
 
   .instance {
@@ -85,10 +96,12 @@
     height: 90px;
 
     text-transform: uppercase;
+    color: rgba(100, 100, 100, 0.9);
 
     display: inline-block;
 
     margin-right: 20px;
+    padding: 30px 5px 5px 5px;
 
     font-size: 12px;
 
@@ -101,7 +114,7 @@
     }
 
     &.elb-instance {
-      background: rgba(142, 68, 173, 1.0);
+      background: rgba(142, 68, 173, 0.7);
       margin: 0 auto;
     }
 

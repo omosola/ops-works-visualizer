@@ -15,18 +15,25 @@
           <div class="title">{{selectedStack.name}}</div>
           <!-- ELBs -->
           <div ng-repeat="elb in selectedStack.elbs" class="elb visualization-layer">
-              <div class="layer-title">
-                  {{elb.name}}
+
+            <div class="info">
+              <div class="instances">
+                <div class="elb-instance instance">
+                    {{elb.name}}
+                </div>
               </div>
-              <div class="elb-instance instance">
-                  {{elb.name}}
+            </div>
+
+              <div class="layer-header">
+                  <div class="layer-title">{{elb.name}}</div>
               </div>
           </div>
 
           <!-- Layers -->
-          <div ng-repeat="layer in selectedStack.layers" class="layer visualization-layer">
-              <!-- Layer: Title -->
-              <div class="layer-title">{{layer.name}}</div>
+          <!-- How to: Have an attribute 'checked' for each element (elb, layer, instance) and only
+          display if the element is checked in the sidebar -->
+          <div ng-repeat="layer in selectedStack.layers" class="layer visualization-layer" ng-show="layer.checked">
+
               <!-- TODO: Use a conditional statement to set the class instead of including instance.status as the class, since it''s more opaque (the connection between ) Layer: Info -->
               <div class="info">
                   <div class="instances">
@@ -36,18 +43,25 @@
                   </div>
               </div><!-- end of info -->
 
+              <!-- Layer: Title -->
+              <div class="layer-header">
+                  <div class="layer-title">{{layer.name}}</div>
+              </div>
+
           </div><!--  end of layer -->
       </div><!-- end of stack visualization -->
 
-    <div class="stack-sidebar">
-    </div><!--  end of sidebar -->
+    <stack-sidebar/>
 
   </div>
 </script>
 
 <script type="text/ng-template" id="stacksidebartemplate.html">
   <div class="stack-sidebar">
-
+    <label ng-repeat="layer in selectedStack.layers">
+    <!-- TODO: Add checkboxes on right and toggle displays accordingly-->
+      <input type="checkbox" ng-model="layer.checked" ng-init="layer.checked=true">{{layer.name}}</input>
+    </label>
   </div>
 </script>
 
@@ -56,7 +70,7 @@
   <div class="content">
 
     <!-- ToDo: Default dropdown to first loaded stack -->
-    <select ng-model="selectedStack" ng-options="stack.name for stack in stacks" ng-init="selectedStack = stacks[0]"></select>
+    <select ng-model="selectedStack" ng-options="stack.name for stack in stacks"></select>
 
     <!-- Individual Display for a stack -->
     <div stack-details-box></div>
