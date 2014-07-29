@@ -14,7 +14,7 @@
           <!-- Visualization Title -->
           <div class="title">{{selectedStack.name}}</div>
           <!-- ELBs -->
-          <div ng-repeat="elb in selectedStack.elbs" class="elb visualization-layer">
+          <div ng-repeat="elb in selectedStack.elbs" class="elb visualization-layer" ng-show="elb.checked">
 
             <div class="info">
               <div class="instances">
@@ -37,7 +37,7 @@
               <!-- TODO: Use a conditional statement to set the class instead of including instance.status as the class, since it''s more opaque (the connection between ) Layer: Info -->
               <div class="info">
                   <div class="instances">
-                      <div ng-repeat="instance in layer.instances" class="instance {{instance.status}}">
+                      <div ng-repeat="instance in layer.instances" class="instance {{instance.status}}" ng-show="instance.checked">
                           {{instance.hostname}}
                       </div>
                   </div>
@@ -58,9 +58,22 @@
 
 <script type="text/ng-template" id="stacksidebartemplate.html">
   <div class="stack-sidebar">
+      ELBs:<br />
+    <label ng-repeat="elb in selectedStack.elbs">
+    <!-- TODO: Add checkboxes on right and toggle displays accordingly-->
+      <input type="checkbox" ng-model="elb.checked" ng-init="elb.checked=true">{{elb.name}}</input>
+    </label>
+
+    LAYERs:<br />
     <label ng-repeat="layer in selectedStack.layers">
     <!-- TODO: Add checkboxes on right and toggle displays accordingly-->
       <input type="checkbox" ng-model="layer.checked" ng-init="layer.checked=true">{{layer.name}}</input>
+    </label>
+
+    INSTANCEs:<br />
+    <label ng-repeat="instance in getAllInstances(selectedStack)">
+    <!-- TODO: Add checkboxes on right and toggle displays accordingly-->
+      <input type="checkbox" ng-model="instance.checked" ng-init="instance.checked=true">{{instance.hostname}}</input>
     </label>
   </div>
 </script>
