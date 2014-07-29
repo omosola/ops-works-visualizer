@@ -32,6 +32,8 @@
 
     padding: 1%;
 
+    overflow-y: scroll;
+
     float: left;
 
     .title {
@@ -49,13 +51,32 @@
 
     background: rgba(22, 160, 133, 0.8);
 
-    color: rgba(255,255,255,0.6);
-    font-size: 10px;
-    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    font-size: 13px;
 
     padding: 10px;
 
     float: right;
+
+    padding-top: 10px;
+
+    .section {
+      margin-bottom: 20px;
+
+      text-transform: uppercase;
+
+      .title {
+        font-size: 15px;
+      }
+
+      label {
+        display: block;
+      }
+
+      input[type="checkbox"] {
+        margin-right: 5px;
+      }
+    }
   }
 
   .visualization-layer {
@@ -66,36 +87,30 @@
 
     position: relative;
 
-    .layer-header {
-      width: 10%;
-      display: inline-block;
+    .layer-title {
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
 
       text-transform: uppercase;
-      color: rgba(0,0,0,0.7);
-      
-      .layer-title {
-        position: absolute;
-        bottom: 0px;
 
-        color: rgba(100,100,100,0.6);
-      }
+      color: rgba(100, 100, 100, 0.4);
+      font-size: 12px;
     }
 
     .info {
-      width: 84%; /* where is the extra 1% margin or padding coming from - 80% + 20% is somehow overflowing */
+      width: 100%; /* where is the extra 1% margin or padding coming from - 80% + 20% is somehow overflowing */
       display: inline-block;
+      text-align: center;
     }
   }
 
   .instances {
-    margin: 0 auto;
-    /* background: rgba(100,100,100,0.2); */
-
     display: inline-block;
   }
 
   .instance {
-    width: 120px;
+    width: 150px;
     height: 90px;
 
     text-transform: uppercase;
@@ -103,26 +118,36 @@
 
     display: inline-block;
 
-    margin-right: 20px;
+    margin: 2.5px 20px 2.5px 0px;
+
     padding: 30px 5px 5px 5px;
 
-    font-size: 12px;
+    border-radius: 4px;
+
+    font-size: 12px;   
+
+    -webkit-box-shadow: 7px 4px 20px 0px rgba(50, 50, 50, 0.2);
+    -moz-box-shadow:    7px 4px 20px 0px rgba(50, 50, 50, 0.2);
+    box-shadow:         7px 4px 20px 0px rgba(50, 50, 50, 0.2);
 
     &.online {
-      background: rgba(39, 174, 96, 1.0);
+      /* border: 1px solid rgba(39, 174, 96, 0.2); */
+      background: rgba(46, 204, 113, 0.4);
     }
 
     &.stopped {
-      background: rgba(192, 57, 43,  0.6);
+      /* border: 1px solid rgba(192, 57, 43, 0.2); */
+      background: rgba(192, 57, 43, 0.4);
     }
 
     &.elb-instance {
-      background: rgba(142, 68, 173,  0.6);
-      margin: 0 auto;
+      /* border: 1px solid rgba(142, 68, 173,  0.2); */
+      background: rgba(142, 68, 173,  0.4);
     }
 
     &.stopping {
-      background: rgba(211, 84, 0,  0.6);
+      /* border: 1px solid rgba(211, 84, 0,  0.2); */
+      background: rgba(142, 68, 173,  0.4);
     }
   }
 
@@ -132,24 +157,31 @@
   clear: both;
 }
 
-select {
+.styled-select select {
   border: 0 !important; /* remove border */
   -webkit-appearance: none; /* remove default chrome/safari style */
   -moz-appearance: none; /* remove default firefox style */
-  background: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.5);
   background-position: 80px 8px;
-
-  width: 10%;
-  min-width: 230px;
-  height: 5%;
-  min-height: 40px;
 
   text-indent: 0.01px;
   text-overflow: "";
   text-align: center;
-  padding-left: 10px;
+  
+  padding: 5px;
 
   cursor: pointer;
 
-  color: #1455a2;
+  width: 230px;
+  height: 34px;
+}
+
+.styled-select {
+  overflow: hidden;
+  width: 200px;
+  height: 34px;
+
+  border-radius: 5px;
+
+  background: url('http://www.iconsdb.com/icons/preview/color/666666/arrow-211-m.png') no-repeat right;
 }

@@ -1,0 +1,18 @@
+  <div class="stack-sidebar">
+    <div class="section">
+      <div class="title">ELBs:</div>
+      <label ng-repeat="elb in selectedStack.elbs">
+        <!-- TODO: Add checkboxes on right and toggle displays accordingly-->
+        <input type="checkbox" ng-model="elb.checked" ng-init="elb.checked=true">{{elb.name}}</input>
+      </label>
+    </div>
+
+    <div class="section">
+      <div class="title">Layers:</div>
+      <label ng-repeat="layer in selectedStack.layers">
+        <!-- TODO: Add checkboxes on right and toggle displays accordingly-->
+        <input type="checkbox" ng-model="layer.checked" ng-init="layer.checked=true">{{layer.name}}</input>
+      </label>
+    </div>
+
+  </div>

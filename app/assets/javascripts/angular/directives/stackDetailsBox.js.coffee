@@ -3,7 +3,7 @@ window.App.directive('stackDetailsBox', ->
   return {
     restrict: 'AE',
     replace: 'true',
-    templateUrl: 'stackdetailsboxtemplate.html'
+    templateUrl: '/templates/stackdetailsbox.html'
   }
 )
 
@@ -12,6 +12,6 @@ window.App.directive('stackSidebar', ->
   return {
     restrict: 'AE',
     replace: 'true',
-    templateUrl: 'stacksidebartemplate.html'
+    templateUrl: '/templates/stacksidebar.html'
   }
 )
