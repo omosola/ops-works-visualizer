@@ -6,17 +6,20 @@
 -->
 
 <div class="stacks-dashboard">
+  <div class="loading-overlay" ng-show="loading">
+      Fetching OpsWorks Stack Info <img src="/assets/loading-icon.gif">
+  </div>
+
   <div class="content">
 
     <!-- ToDo: Default dropdown to first loaded stack -->
     <div class="styled-select">
-      <select ng-model="selectedStack" ng-options="stack.name for stack in stacks"></select>
+      <select ng-model="selectedStack" ng-options="stack.name for stack in stacks" ng-init="selectedStack = options[0]">
+        <option value="" selected>--Please select a stack--</option>
+      </select>
     </div>
 
     <div stack-details-box></div>
 
   </div>
 </div>
-
-
-
