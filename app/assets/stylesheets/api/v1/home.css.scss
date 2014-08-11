@@ -111,14 +111,14 @@
 
   .instance {
     width: 150px;
-    height: 90px;
+    min-height: 90px;
 
     text-transform: uppercase;
     color: rgba(100, 100, 100, 1.0);
 
     display: inline-block;
 
-    margin: 2.5px 20px 2.5px 0px;
+    margin: 2.5px 10px 2.5px 0px;
 
     padding: 30px 5px 5px 5px;
 
