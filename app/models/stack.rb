@@ -16,16 +16,6 @@ class Stack
 		end
 	end
 
-	## TODO - WORK IN PROGRESS
-	def self.find(id)
-		all_stacks = Rails.cache.fetch("all_stacks")
-		if !all_stacks
-			# OpsWorksWrapper::client.describe_stacks(ids: Array(id)).data[:stacks]
-		else
-			all_stacks.bsearch{ |x| x.id == id }
-		end
-	end
-
 	## private helper method
 	def self.load_stacks
 		stacks = OpsWorksWrapper::client.describe_stacks.data[:stacks]
