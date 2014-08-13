@@ -23,14 +23,14 @@
       <div class="title">Instances ({{selectedStack.instances.length}}): </div>
       <label ng-repeat="instance in selectedStack.instances">
         <input type="checkbox" ng-model="instance.checked" ng-init="instance.checked=true">
-            {{instance.hostname}} - {{instance.status}}
+            {{instance.hostname}}
         </input>
       </label>
     </div>
 
     <div class="section" ng-show="selectedStack">
       <div class="title">Instance Details:</div>
-      <label ng-repeat="property in instanceProperties">
+      <label ng-repeat="property in optionalInstanceProperties">
         <input type="checkbox" ng-model="instancePropertiesVisibility[property]">
           {{property}}
         </input>

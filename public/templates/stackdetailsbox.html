@@ -24,14 +24,13 @@
           <!-- Layers -->
           <div ng-repeat="layer in selectedStack.layers" class="layer visualization-layer" ng-show="layer.checked">
 
-              <!-- TODO: Use a conditional statement to set the class instead of including instance.status as the class, since it makes the connection between the CSS selectors and instance status more opaque Layer: Info -->
+              <!-- TODO: Use a conditional statement to set the class instead of including instance.status as the class, otherwise it makes the connection between the CSS selectors and instance status more opaque -->
+              <!-- Layer: Info -->
               <div class="info">
                   <div class="instances">
                       <div ng-repeat="instance in layer.instances" class="instance {{instance.status}}" ng-show="instanceIsVisible(selectedStack, instance)">
-                          <!-- TODO: Replace with a better solution. Right now using a cheap solution where I add a space so 
-                          even instances which have no value for this property, still leave space in their box for the property
-                          Otherwise, the boxes were uneven heights if one instance had a value for the property and another one didn't -->
-                          <div ng-repeat="property in instanceProperties" ng-show="instancePropertiesVisibility[property]">&nbsp;{{instance[property]}}</div>
+                          <div class="hostname">{{instance.hostname}}</div>
+                          <div ng-repeat="property in optionalInstanceProperties" ng-show="instancePropertiesVisibility[property]" class="property">&nbsp;{{instance[property]}}</div>
                       </div>
                   </div>
               </div><!-- end of info -->

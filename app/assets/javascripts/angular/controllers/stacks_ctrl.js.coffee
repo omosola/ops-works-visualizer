@@ -4,35 +4,26 @@ App.controller 'StacksCtrl', ['$scope', 'Stacks', ($scope, Stacks) ->
 
   Stacks.query((data) -> 
 
-    # make an indexable map for the instances
-    # this is so we can easily associate the layer instances with the
-    # unique set of instances that are included in the stack
-    # there's no current binding between these two
-
-    ## TODO: Think of a cleaner solution
-    for stack in data
+    for stack in data  
+      ## Bind instances across layers to the associated unique instancesfor the stack - so they can be toggled on/off all together
       stack.instanceIDMap = {}
       for instance in stack.instances
         stack.instanceIDMap[instance.id] = instance
-        # pull an array of the properties of the instance objects
-        # - pulled from the first instance of the stack
-        # in its own variable just for clarity
-        if !$scope.instancePropertiesVisibility
+        
+        # Array of properties for the sidebar. Allowing toggling on/off
+        if !$scope.optionalInstanceProperties
           $scope.instancePropertiesVisibility = {}
-          for property in Object.keys(instance)
-            if property == "hostname"
-              $scope.instancePropertiesVisibility[property] = true
-            else if property == "layer_ids"
-              delete $scope.instancePropertiesVisibility[property]
-            else
-              $scope.instancePropertiesVisibility[property] = false
-    $scope.instanceProperties = Object.keys($scope.instancePropertiesVisibility)
+          # don't allow hostname, layer_ids, and id to be toggled on and off; requires explicit inclusion in the view
+          $scope.optionalInstanceProperties = (property for property in Object.keys(instance) when property not in ["hostname", "layer_ids", "id"])
+          $scope.instancePropertiesVisibility[property] = false for property in $scope.optionalInstanceProperties
+
 
     $scope.stacks = data
 
     $scope.loading = false
   )
 
+  # allows all occurrences of an instance to be toggled on/off together
   $scope.instanceIsVisible = (stack, instance) ->
     stack.instanceIDMap[instance.id].checked 
 ]

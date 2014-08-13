@@ -102,6 +102,13 @@
       width: 100%; /* where is the extra 1% margin or padding coming from - 80% + 20% is somehow overflowing */
       display: inline-block;
       text-align: center;
+
+      .hostname { }
+
+      .property {
+        font-size: 9px;
+        color: rgba(127, 140, 141,1.0);
+      }
     }
   }
 
@@ -110,7 +117,7 @@
   }
 
   .instance {
-    width: 150px;
+    width: 160px;
     min-height: 90px;
 
     text-transform: uppercase;
@@ -120,7 +127,7 @@
 
     margin: 2.5px 10px 2.5px 0px;
 
-    padding: 30px 5px 5px 5px;
+    padding: 15px 5px 5px 5px;
 
     border-radius: 4px;
 
