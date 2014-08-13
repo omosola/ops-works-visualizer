@@ -5,12 +5,12 @@ App.controller 'StacksCtrl', ['$scope', 'Stacks', ($scope, Stacks) ->
   Stacks.query((data) -> 
 
     for stack in data  
-      ## Bind instances across layers to the associated unique instancesfor the stack - so they can be toggled on/off all together
+      # Bind instances across layers to the associated unique
+      # instances for the stack - so they can be toggled on/off all together
       stack.instanceIDMap = {}
       for instance in stack.instances
         stack.instanceIDMap[instance.id] = instance
         
-        # Array of properties for the sidebar. Allowing toggling on/off
         if !$scope.optionalInstanceProperties
           $scope.instancePropertiesVisibility = {}
           # don't allow hostname, layer_ids, and id to be toggled on and off; requires explicit inclusion in the view
@@ -23,7 +23,10 @@ App.controller 'StacksCtrl', ['$scope', 'Stacks', ($scope, Stacks) ->
     $scope.loading = false
   )
 
-  # allows all occurrences of an instance to be toggled on/off together
-  $scope.instanceIsVisible = (stack, instance) ->
-    stack.instanceIDMap[instance.id].checked 
+  # allows all occurrences of an instance (across layers) to be toggled on/off together
+  $scope.instanceIsVisible = (instance) ->
+    stack = $scope.selectedStack
+    stack and stack.instanceIDMap[instance.id].checked
+
+  $scope.propertyIsVisible = (property) -> $scope.instancePropertiesVisibility[property]
 ]

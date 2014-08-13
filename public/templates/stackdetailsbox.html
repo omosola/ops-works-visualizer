@@ -28,9 +28,9 @@
               <!-- Layer: Info -->
               <div class="info">
                   <div class="instances">
-                      <div ng-repeat="instance in layer.instances" class="instance {{instance.status}}" ng-show="instanceIsVisible(selectedStack, instance)">
+                      <div ng-repeat="instance in layer.instances" class="instance {{instance.status}}" ng-show="instanceIsVisible(instance)">
                           <div class="hostname">{{instance.hostname}}</div>
-                          <div ng-repeat="property in optionalInstanceProperties" ng-show="instancePropertiesVisibility[property]" class="property">&nbsp;{{instance[property]}}</div>
+                          <div ng-repeat="property in optionalInstanceProperties" ng-show="propertyIsVisible(property)" class="property">&nbsp;{{instance[property]}}</div>
                       </div>
                   </div>
               </div><!-- end of info -->
