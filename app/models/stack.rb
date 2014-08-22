@@ -8,16 +8,27 @@ class Stack
   # Class methods
   ######################################################################################################################
 
-	def self.all(reload = false)
+	# caching system
+	# When all stacks are requested, we clear everything previously in the cache, because we don't want
+	# to store old individual stack details if we could potentially get completely new stacks from the
+	# ops works call
+	#
+	# When we ask for individual stack info, 
+
+	def self.all(reload = false, load_details = false)
+		reload ||= false
+		load_details ||= false
+		
 		if reload then Rails.cache.delete("all_stacks") end
 
 		Rails.cache.fetch("all_stacks", expires_in: 15.minutes) do
-			self.load_stacks
+			Rails.cache.clear # get rid of all old stack information (instances, elbs, layers, etc)
+			self.load_stacks(load_details)
 		end
 	end
 
 	## private helper method
-	def self.load_stacks
+	def self.load_stacks(load_details)
 		stacks = OpsWorksWrapper::client.describe_stacks.data[:stacks]
 
 		# returns all of the stacks converted from hashes (response from OpsWorks API) into Stack objects
@@ -29,18 +40,22 @@ class Stack
 				default_os: stack[:default_os], 
 				default_az: stack[:default_availability_zone]
 			}
-			# create a new Stack object for each stack in the AWS_OW JSON response
+			# create a new Stack object for each stack in the AWS_OpsWorks JSON response
 			Stack::new(id, opts)
 		end
 
-		stacks.each do |stack|
-			stack.load_instances
-			stack.load_layers
-			stack.associate_instances_with_layers
-			stack.load_elastic_load_balancers
-		end
+		stacks.each(&:load_all_stack_info) if load_details
+		puts stacks
+		stacks
 	end
 
+	def self.find(id)
+		Rails.cache.fetch("stack_#{id}", expires_in: 15.minutes) do
+			stack = Stack.all.find { |stack| stack.id == id }
+			stack.load_all_stack_info if stack
+			stack
+		end
+	end
 
   ######################################################################################################################
   # Instance methods
@@ -55,6 +70,13 @@ class Stack
 		@hostname = opts[:hostname]
 		@default_os = opts[:default_os]
 		@default_az = opts[:default_az] # availability zone
+	end
+
+	def load_all_stack_info
+		self.load_instances
+		self.load_layers
+		self.associate_instances_with_layers
+		self.load_elastic_load_balancers
 	end
 
 	def load_layers
