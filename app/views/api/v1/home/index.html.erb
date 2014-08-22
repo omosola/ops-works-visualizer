@@ -12,7 +12,7 @@
 
   <div class="content">
     <div class="styled-select">
-      <select ng-model="selectedStack" ng-options="stack.name for stack in stacks | orderBy:'name'" ng-init="selectedStack = options[0]">
+      <select ng-model="selectedStackId" ng-options="stack.id as stack.name for stack in stacks | orderBy:'name'" ng-change="loadStackInfo(selectedStackId)">
         <option value="" selected>--Please select a stack--</option>
       </select>
     </div>
