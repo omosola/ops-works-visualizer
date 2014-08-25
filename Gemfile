@@ -38,7 +38,3 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'aws-sdk'
-
-gem 'wicked_pdf'
-
-gem 'wkhtmltopdf-binary'
