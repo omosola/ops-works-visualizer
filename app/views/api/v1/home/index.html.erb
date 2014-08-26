@@ -5,7 +5,9 @@
       that way, they can be used in more places if needed
 -->
 
-<div class="stacks-dashboard">
+<div id="stacks-dashboard">
+
+
   <div class="loading-overlay" ng-show="loading">
       Fetching Info from OpsWorks API <img src="/assets/loading-icon.gif">
   </div>
@@ -17,7 +19,42 @@
       </select>
     </div>
 
+    <button id="image-downloader"></button>
     <div stack-details-box></div>
 
   </div>
 </div>
+
+<script>
+$('#image-downloader').click(function() {
+    // Remove height:100% for stack-visualization
+    // So all the content is visible one the page and can be saved
+    // in an image; Only necessary if the content overflows the div
+    if(overflowing('stack-visualization')) {
+      $('#stack-visualization').css('height', 'auto');
+    }
+    $('.flashscreen').delay(50).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100);
+    // Requires a time delay to call onrendered after the div has been set to
+    // height auto and not before
+    saveDivToPng('#stack-visualization', function() {
+      // do this after the image has already been rendered and saved
+      // revert to the normal height: 100% scrolling size of stack-visualization
+      $('#stack-visualization').css('height', '100%');
+    })
+});
+
+var saveDivToPng = function(elementId, callback) {
+  html2canvas($(elementId), {
+    onrendered: function(canvas) {
+      Canvas2Image.saveAsPNG(canvas);
+      callback();
+    }
+  })
+};
+
+var overflowing = function(elementId) {
+  var element = document.getElementById(elementId);
+  return element && (element.offsetHeight < element.scrollHeight ||
+  element.offsetWidth < element.scrollWidth);
+};
+</script>

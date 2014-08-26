@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.stacks-dashboard {
+#stacks-dashboard {
   width: 100%;
   height: 95%;
 
@@ -14,7 +14,7 @@
     margin-left: 5%;
   }
 
-  .stack-details-box {
+  #stack-details-box {
     height: 90%;
 
     margin: 10px auto;
@@ -24,7 +24,7 @@
     background: rgba(255, 255, 255, 0.9);
   }
 
-  .stack-visualization {
+  #stack-visualization {
     width: 80%;
     height: 100%;
 
@@ -32,7 +32,7 @@
 
     padding: 1%;
 
-    overflow-y: scroll;
+    overflow-y: scroll; 
 
     float: left;
 
@@ -190,6 +190,8 @@
 
   border-radius: 5px;
 
+  display: inline;
+
   background: url(/assets/down-arrow.png) no-repeat right;
 }
 
@@ -207,4 +209,29 @@
   font-size: 50px;
   color: rgba(255, 255, 255, 0.8);
   font-family: 'Lobster', cursive;
+}
+
+button#image-downloader {
+  border-radius: 5px;
+
+  background: url(/assets/camera-32-32.png) no-repeat center;
+  width: 32px;
+  height: 32px;
+
+  border: none;
+
+  display: inline;
+}
+
+.flashscreen {
+  height: 100%;
+  width: 100%;
+
+  background: url(/assets/camera-256-256.png) no-repeat center;
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: none;
 }
