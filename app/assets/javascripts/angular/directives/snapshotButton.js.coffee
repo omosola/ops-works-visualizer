@@ -9,15 +9,13 @@ window.App.directive('snapshotButton', ->
         canvasElementSelector = "#" + attrs.canvaselementid
         flashScreenSelector = "#" + attrs.flashscreenid
 
-        oldHeight = $(canvasElementSelector).css('height')
-
         if (contentIsOveflowing(attrs.canvaselementid))
           $(canvasElementSelector).css('height', 'auto')
 
         if (flashScreenSelector)
           flashElement(flashScreenSelector, 2)
 
-        callback = () -> $(canvasElementSelector).css('height', oldHeight)
+        callback = () -> $(canvasElementSelector).css('height', '100%')
         saveDivToPng(canvasElementSelector, callback)
       )
   }
