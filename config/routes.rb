@@ -6,6 +6,5 @@ OpsWorksVisualization::Application.routes.draw do
     end
   end
 
-
   root to: "api/v1/home#index"
 end

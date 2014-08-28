@@ -1,7 +1,9 @@
  <div id="stack-details-box">
-      <div id="stack-visualization">
 
-        <div class="flashscreen"></div>
+      <!-- <button id="image-downloader" ng-show="selectedStack"></button> -->
+      <snapshot-button flashscreenid="flashscreen" canvaselementid="stack-visualization"></snapshot-button>
+
+      <div id="stack-visualization">
         
           <!-- Visualization Title -->
           <div class="title">{{selectedStack.name}}</div>
@@ -44,6 +46,6 @@
           </div>
       </div>
 
-    <stack-sidebar/>
+    <stack-sidebar />
 
   </div>

@@ -7,25 +7,28 @@
 
 <div id="stacks-dashboard">
 
-
   <div class="loading-overlay" ng-show="loading">
       Fetching Info from OpsWorks API <img src="/assets/loading-icon.gif">
   </div>
 
   <div class="content">
+    
     <div class="styled-select">
       <select ng-model="selectedStackId" ng-options="stack.id as stack.name for stack in stacks | orderBy:'name'" ng-change="loadStackInfo(selectedStackId)">
         <option value="" selected>--Please select a stack--</option>
       </select>
     </div>
-
-    <button id="image-downloader"></button>
-    <div stack-details-box></div>
+    
+    <div id="flashscreen"></div>
+    
+    <stack-details-box />
 
   </div>
 </div>
 
-<script>
+
+
+<!-- <script>
 $('#image-downloader').click(function() {
     // Remove height:100% for stack-visualization
     // So all the content is visible one the page and can be saved
@@ -33,7 +36,7 @@ $('#image-downloader').click(function() {
     if(overflowing('stack-visualization')) {
       $('#stack-visualization').css('height', 'auto');
     }
-    $('.flashscreen').delay(50).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100);
+    $('.flashscreen').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100);
     // Requires a time delay to call onrendered after the div has been set to
     // height auto and not before
     saveDivToPng('#stack-visualization', function() {
@@ -57,4 +60,4 @@ var overflowing = function(elementId) {
   return element && (element.offsetHeight < element.scrollHeight ||
   element.offsetWidth < element.scrollWidth);
 };
-</script>
+</script> -->

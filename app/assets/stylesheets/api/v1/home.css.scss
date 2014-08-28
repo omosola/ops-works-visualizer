@@ -22,6 +22,8 @@
     border-radius: 5px;
 
     background: rgba(255, 255, 255, 0.9);
+
+    position: relative;
   }
 
   #stack-visualization {
@@ -35,6 +37,7 @@
     overflow-y: scroll; 
 
     float: left;
+
 
     .title {
       font-size: 16px;
@@ -59,6 +62,8 @@
     float: right;
 
     overflow-y: scroll;
+
+    position: relative;
 
     .section {
       margin-bottom: 20px;
@@ -180,17 +185,15 @@
   cursor: pointer;
 
   width: 230px;
-  height: 34px;
+  height: 40px;
 }
 
 .styled-select {
   overflow: hidden;
   width: 200px;
-  height: 34px;
+  height: 40px;
 
   border-radius: 5px;
-
-  display: inline;
 
   background: url(/assets/down-arrow.png) no-repeat right;
 }
@@ -206,6 +209,8 @@
   padding-top: 20%;
   padding-left: 25%;
 
+  z-index: 1;
+
   font-size: 50px;
   color: rgba(255, 255, 255, 0.8);
   font-family: 'Lobster', cursive;
@@ -220,12 +225,20 @@ button#image-downloader {
 
   border: none;
 
-  display: inline;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  z-index: 1;
 }
 
-.flashscreen {
+/* 
+  overlayed on top of the stack-visualization div.
+  should be same width as stack-visualization div
+ */
+#flashscreen {
   height: 100%;
-  width: 100%;
+  width: 80%;
 
   background: url(/assets/camera-256-256.png) no-repeat center;
   
@@ -234,4 +247,6 @@ button#image-downloader {
   left: 0;
 
   display: none;
+
+  z-index: 1;
 }

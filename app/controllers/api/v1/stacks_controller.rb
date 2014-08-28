@@ -5,8 +5,8 @@ class Api::V1::StacksController < ApplicationController
 		# possible parameters:
 		# reload -> indicates whether the stack info should be reloaded or pulled from cache
 		# 					where available
-		# load_details -> indicates if all stack info (ELB, layers, etc) should be loaded at once
-		# 		or just the basic stack information [Basic, Advanced]
+		# detailed -> indicates if all stack info (ELB, layers, etc) should be loaded at once
+		# 		or just the basic stack information - Boolean value (true/false)
 		@stacks = Stack.all params[:reload], params[:detailed]
 		render :json => @stacks
 	end
