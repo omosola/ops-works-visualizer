@@ -144,8 +144,15 @@ var Canvas2Image = (function() {
 
 
 	// sends the generated file to the client
-	var saveFile = function(strData) {
-		document.location.href = strData;
+	var saveFile = function(strData, downloadLinkElem, filename) {
+		downloadLinkElem.attr({
+			"download": filename,
+			"href": strData,
+			"target": "_blank"
+		});
+		
+		//document.location.download = "text.png"
+		//document.location.href = strData
 	}
 
 	var makeDataURI = function(strData, strMime) {
@@ -177,7 +184,7 @@ var Canvas2Image = (function() {
 
 	return {
 
-		saveAsPNG : function(oCanvas, bReturnImg, iWidth, iHeight) {
+		saveAsPNG : function(oCanvas, downloadLinkElem, filename, bReturnImg, iWidth, iHeight) {
 			if (!bHasDataURL) {
 				return false;
 			}
@@ -186,12 +193,12 @@ var Canvas2Image = (function() {
 			if (bReturnImg) {
 				return makeImageObject(strData);
 			} else {
-				saveFile(strData.replace("image/png", strDownloadMime));
+				saveFile(strData.replace("image/png", strDownloadMime), downloadLinkElem, filename);
 			}
 			return true;
 		},
 
-		saveAsJPEG : function(oCanvas, bReturnImg, iWidth, iHeight) {
+		saveAsJPEG : function(oCanvas, downloadLinkElem, filename, bReturnImg, iWidth, iHeight) {
 			if (!bHasDataURL) {
 				return false;
 			}
@@ -209,12 +216,12 @@ var Canvas2Image = (function() {
 			if (bReturnImg) {
 				return makeImageObject(strData);
 			} else {
-				saveFile(strData.replace(strMime, strDownloadMime));
+				saveFile(strData.replace(strMime, strDownloadMime), downloadLinkElem, filename);
 			}
 			return true;
 		},
 
-		saveAsBMP : function(oCanvas, bReturnImg, iWidth, iHeight) {
+		saveAsBMP : function(oCanvas, downloadLinkElem, filename, bReturnImg, iWidth, iHeight) {
 			if (!(bHasImageData && bHasBase64)) {
 				return false;
 			}
@@ -226,7 +233,7 @@ var Canvas2Image = (function() {
 			if (bReturnImg) {
 				return makeImageObject(makeDataURI(strImgData, "image/bmp"));
 			} else {
-				saveFile(makeDataURI(strImgData, strDownloadMime));
+				saveFile(makeDataURI(strImgData, strDownloadMime), downloadLinkElem, filename);
 			}
 			return true;
 		}

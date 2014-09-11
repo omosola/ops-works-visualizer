@@ -1,32 +1,54 @@
 window.App.directive('snapshotButton', ->
 
   return {
-    restrict: 'AE',
+    restrict: 'A',
     replace: 'true',
-    template: '<button id="image-downloader"></button>',
+    template: '<a id="image-downloader-icon">'+
+              '</a>',
+    scope: {
+      stackname: '=stackname'
+    },
     link: (scope, elem, attrs) ->
-      elem.bind('click', () ->
-        canvasElementSelector = "#" + attrs.canvaselementid
-        flashScreenSelector = "#" + attrs.flashscreenid
+      elem.bind('mouseover', () ->
+        # updates the download link with the png data for this stack view
+        # ensures that the correct view is downloaded when the snapshot button is clicked
+        if scope.stackname
+          updateDownloadLink(attrs.canvaselementid, scope.stackname)        
+      )
 
-        if (contentIsOveflowing(attrs.canvaselementid))
-          $(canvasElementSelector).css('height', 'auto')
-
-        if (flashScreenSelector)
-          flashElement(flashScreenSelector, 2)
-
-        callback = () -> $(canvasElementSelector).css('height', '100%')
-        saveDivToPng(canvasElementSelector, callback)
+      elem.bind('click', (event) ->
+        downloadDivAsPng(attrs.flashscreenid)
       )
   }
 )
 
-saveDivToPng = (elementId, callback) ->
-  html2canvas($(elementId), {
+downloadDivAsPng = (flashscreenid) ->
+  flashScreenSelector = "#" + flashscreenid
+  if (flashScreenSelector)
+    flashElement(flashScreenSelector, 2)
+
+
+updateDownloadLink = (canvaselementid, stackName) ->
+  canvasElementSelector = "#" + canvaselementid
+  if (contentIsOveflowing(canvaselementid))
+    $(canvasElementSelector).css('height', 'auto')
+
+  callback = () -> $(canvasElementSelector).css('height', '100%') 
+  
+  html2canvas($(canvasElementSelector), {
       onrendered: (canvas) ->
-        Canvas2Image.saveAsPNG(canvas)
+        filename = buildPngFilename(stackName)
+        Canvas2Image.saveAsPNG(canvas, $('#image-downloader-icon'), filename)
         callback()
   })
+
+# This implementation is a bit specific to Babbel OpsWorks stack naming conventions
+buildPngFilename = (stackName) ->
+  filename = stackName.toLowerCase()
+  filename = filename.replace(':', '')
+  filename = filename.replace(' ', '-')
+  filename += '-' + Date.now()
+  filename += '.png'
 
 contentIsOveflowing = (elementId) ->
   element = document.getElementById(elementId)
