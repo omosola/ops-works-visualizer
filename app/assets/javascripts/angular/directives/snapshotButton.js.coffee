@@ -47,8 +47,18 @@ buildPngFilename = (stackName) ->
   filename = stackName.toLowerCase()
   filename = filename.replace(':', '')
   filename = filename.replace(' ', '-')
-  filename += '-' + Date.now()
+  filename += '-' + convertUnixToLocalTimeString(Date.now())
   filename += '.png'
+
+convertUnixToLocalTimeString = (unixTimestamp) ->
+  date = new Date(unixTimestamp)
+  year = date.getFullYear()
+  month = ('0' + (date.getMonth() + 1)).slice(-2)
+  day = ('0' + date.getDate()).slice(-2)
+  hour = date.getHours()
+  min = ('0' + date.getMinutes()).slice(-2)
+  year + month + day + hour + min
+
 
 contentIsOveflowing = (elementId) ->
   element = document.getElementById(elementId)
