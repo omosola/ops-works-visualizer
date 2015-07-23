@@ -1,6 +1,6 @@
 ## OpsWorks Visualization App
 
-Angular web app displaying all Babbel current OpsWorks stacks and corresponding information including each stacks ELBs, Layers, and the associated instances.
+Angular web app built @Babbel displaying all current OpsWorks stacks and corresponding information including each stacks ELBs, Layers, and the associated instances.
 
 For each instance, there is optional information which can be displayed in the visualization, including the instance's status, it's size, and it's public IP address.
 
