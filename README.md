@@ -10,11 +10,13 @@ For this app, an API wrapper was designed to pull information from the Amazon Op
 
 To Use:
 
-Export your AWS Access Key ID and AWS Secrete Access Key
+Set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment variables
 
-``export AWS_ACCESS_KEY_ID=your_aws_access_key_id``
+``echo "export AWS_ACCESS_KEY_ID=your_aws_access_key_id" >> ~/.profile``
 
-``export AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key``
+``echo "export AWS_SECRET_ACCESS_KEY=your_secret_access_key" >> ~/.profile``
+
+``. ~/.profile``
 
 Start the server
 
