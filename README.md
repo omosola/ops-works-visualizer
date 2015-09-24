@@ -8,3 +8,16 @@ The visualizer has a sidebar which permits layers, ELBs, and instances to be tog
 
 For this app, an API wrapper was designed to pull information from the Amazon OpsWorks API and package it as a list of stacks, with associated instances, layers, and ELBs. This makes the information more easily digestable and causes clients of the API to only need to make one call to the API wrapper (as opposed to several calls to the OpsWorks API, with repackaging on the client side).
 
+To Use:
+
+Export your AWS Access Key ID and AWS Secrete Access Key
+
+``export AWS_ACCESS_KEY_ID=your_aws_access_key_id``
+``export AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key``
+
+Start the server
+
+``rails s``
+
+The app should be ready for use.
+
