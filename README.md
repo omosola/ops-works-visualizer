@@ -13,6 +13,7 @@ To Use:
 Export your AWS Access Key ID and AWS Secrete Access Key
 
 ``export AWS_ACCESS_KEY_ID=your_aws_access_key_id``
+
 ``export AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key``
 
 Start the server
